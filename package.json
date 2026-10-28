@@ -1,0 +1,59 @@
+{
+  "name": "devops-toolbox",
+  "displayName": "DevOps Toolbox — 36 Offline Tools",
+  "description": "JWT decoder, cron explainer, CIDR calculator, YAML/JSON/Terraform/Kubernetes linters and 32 more, running entirely inside VS Code. Nothing you paste leaves your machine.",
+  "version": "0.1.0",
+  "publisher": "abhinai20",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Linters",
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "jwt",
+    "cron",
+    "kubernetes",
+    "terraform",
+    "offline"
+  ],
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0A2540",
+    "theme": "dark"
+  },
+  "main": "./src/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "devopsToolbox.open",
+        "title": "Open Toolbox",
+        "category": "DevOps Toolbox"
+      },
+      {
+        "command": "devopsToolbox.openTool",
+        "title": "Open Tool…",
+        "category": "DevOps Toolbox"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node build/build.js && node build/icon.js",
+    "package": "npm run build && npm test && npx --yes @vscode/vsce package",
+    "publish": "npm run build && npm test && npm run preflight && npx --yes @vscode/vsce publish",
+    "test": "node build/test.js",
+    "preflight": "node build/preflight.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abhinai20/devops-toolbox-vscode"
+  },
+  "homepage": "https://abhinai20.github.io/devops-toolbox/",
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}

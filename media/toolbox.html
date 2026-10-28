@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="%%CSP%%">
+<title>DevOps Toolbox</title>
+<link rel="stylesheet" href="%%ROOT%%/style.css">
+</head>
+<body>
+
+<div class="layout">
+<nav class="tool-nav" id="tool-nav">
+  <div class="nav-brand">
+    <span class="logo">DevOps<span>Toolbox</span></span>
+    <p class="tagline">Every tool runs locally inside VS Code — nothing you paste leaves your machine.</p>
+    <span class="nav-badge"><span class="dot"></span><b>36</b>&nbsp;tools</span>
+    <div class="nav-tools-row">
+      <input type="search" id="nav-filter" class="nav-filter" placeholder="Filter tools…" aria-label="Filter tools" autocomplete="off">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark theme" title="Switch theme">◐</button>
+    </div>
+  </div>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Format &amp; Validate</summary>
+    <a class="tab-btn active" data-tool="yaml" data-kw="yaml validate lint" href="#">YAML Validator</a>
+    <a class="tab-btn" data-tool="jsonyaml" data-kw="convert yaml json" href="#">JSON ↔ YAML</a>
+    <a class="tab-btn" data-tool="md2word" data-kw="markdown docx document" href="#">Markdown → Word</a>
+    <a class="tab-btn" data-tool="xmljson" data-kw="convert xml json" href="#">XML ↔ JSON</a>
+    <a class="tab-btn" data-tool="jsonschema" data-kw="json schema" href="#">JSON Schema Generator</a>
+    <a class="tab-btn" data-tool="structdiff" data-kw="diff compare yaml json config" href="#">Config Diff (JSON/YAML)</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Kubernetes &amp; Docker</summary>
+    <a class="tab-btn" data-tool="k8slint" data-kw="kubernetes k8s manifest lint" href="#">K8s Manifest Analyzer</a>
+    <a class="tab-btn" data-tool="dockerlint" data-kw="docker container image" href="#">Dockerfile Checker</a>
+    <a class="tab-btn" data-tool="k8squantity" data-kw="kubernetes k8s memory cpu" href="#">K8s Quantity Converter</a>
+    <a class="tab-btn" data-tool="resourcequota" data-kw="kubernetes k8s quota limits" href="#">K8s Resource Quota Calculator</a>
+    <a class="tab-btn" data-tool="jsonpath" data-kw="kubernetes k8s kubectl query" href="#">kubectl JSONPath Tester</a>
+    <a class="tab-btn" data-tool="k8sgen" data-kw="kubernetes k8s deployment service ingress yaml generator" href="#">K8s Manifest Generator</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Reliability</summary>
+    <a class="tab-btn" data-tool="slo" data-kw="sre error budget uptime downtime availability" href="#">SLO / Error Budget Calculator</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Terraform &amp; AWS</summary>
+    <a class="tab-btn" data-tool="tf" data-kw="terraform hcl plan" href="#">TF Plan Formatter</a>
+    <a class="tab-btn" data-tool="iampolicy" data-kw="aws iam security policy permissions" href="#">IAM Policy Analyzer</a>
+    <a class="tab-btn" data-tool="semver" data-kw="terraform npm version range constraint" href="#">Version Constraint Checker</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Security</summary>
+    <a class="tab-btn" data-tool="jwt" data-kw="token auth decode security" href="#">JWT Decoder</a>
+    <a class="tab-btn" data-tool="chmod" data-kw="linux unix permissions octal" href="#">chmod Calculator</a>
+    <a class="tab-btn" data-tool="secretscanner" data-kw="security credentials leak scan" href="#">Secret Scanner</a>
+    <a class="tab-btn" data-tool="tlsdecoder" data-kw="ssl certificate security x509" href="#">TLS Certificate Decoder</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Text &amp; Code</summary>
+    <a class="tab-btn" data-tool="regex" data-kw="regular expression pattern" href="#">Regex Tester</a>
+    <a class="tab-btn" data-tool="curl" data-kw="http request api client" href="#">cURL → Code</a>
+    <a class="tab-btn" data-tool="mermaid" data-kw="diagram chart" href="#">Mermaid Diagram Preview</a>
+    <a class="tab-btn" data-tool="restmock" data-kw="api mock http endpoint" href="#">REST Endpoint Mock Generator</a>
+    <a class="tab-btn" data-tool="envparser" data-kw="dotenv environment variables" href="#">.env File Validator</a>
+    <a class="tab-btn" data-tool="nginxfmt" data-kw="nginx webserver config" href="#">Nginx Config Formatter</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Time</summary>
+    <a class="tab-btn" data-tool="cron" data-kw="crontab schedule" href="#">Cron Explainer</a>
+    <a class="tab-btn" data-tool="cronbuilder" data-kw="crontab schedule" href="#">Cron Builder</a>
+    <a class="tab-btn" data-tool="timestamp" data-kw="unix epoch date time" href="#">Unix Timestamp</a>
+    <a class="tab-btn" data-tool="timezone" data-kw="utc time date convert" href="#">Timezone Converter</a>
+    <a class="tab-btn" data-tool="cronnext" data-kw="crontab schedule next run" href="#">Cron Next Run Calculator</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Networking</summary>
+    <a class="tab-btn" data-tool="cidr" data-kw="network ip subnet mask" href="#">CIDR Calculator</a>
+    <a class="tab-btn" data-tool="cidroverlap" data-kw="network ip subnet overlap" href="#">CIDR Overlap Checker</a>
+    <a class="tab-btn" data-tool="subnetplanner" data-kw="aws vpc network subnet cidr ip" href="#">VPC Subnet Planner</a>
+  </details>
+
+  <details class="nav-group" open>
+    <summary class="nav-group-label">Shell &amp; Files</summary>
+    <a class="tab-btn" data-tool="findbuilder" data-kw="linux unix shell find" href="#">find Command Builder</a>
+    <a class="tab-btn" data-tool="sedbuilder" data-kw="linux unix shell sed" href="#">sed Command Builder</a>
+  </details>
+
+
+</nav>
+
+<main>
+<section class="tool-panel active" id="panel-yaml">
+    <div class="panel-header"><h1>YAML Validator</h1><button class="clear-btn" data-clear="yaml">Clear</button></div>
+    <p class="tool-desc">Paste any YAML — Kubernetes manifests, Docker Compose, CI configs — and check it for syntax errors instantly. Runs fully client-side.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="yaml-input">Your YAML</label>
+        <textarea id="yaml-input" spellcheck="false" placeholder="apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3"></textarea>
+        <button id="yaml-check-btn" class="primary-btn">Check YAML</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="yaml-result" class="result-box result-idle">Paste YAML and click "Check YAML" to see the result here.</div>
+      </div>
+    </div>
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="tools/jsonyaml.html">JSON ↔ YAML</a></li><li><a href="tools/md2word.html">Markdown → Word</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-jsonyaml">
+    <div class="panel-header"><h1>JSON ↔ YAML Converter</h1><button class="clear-btn" data-clear="jsonyaml">Clear</button></div>
+    <p class="tool-desc">Paste JSON or YAML and convert to the other format. Auto-detects which one you pasted.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="jy-input">Input (JSON or YAML)</label>
+        <textarea id="jy-input" spellcheck="false" placeholder='{"apiVersion": "v1", "kind": "Pod"}'></textarea>
+        <div class="btn-row">
+          <button id="jy-to-yaml-btn" class="primary-btn">Convert to YAML</button>
+          <button id="jy-to-json-btn" class="secondary-btn">Convert to JSON</button>
+        </div>
+      </div>
+      <div class="io-col">
+        <label>Output</label>
+        <pre id="jy-result" class="result-box result-idle tf-output">Paste JSON or YAML, then pick a direction.</pre>
+      </div>
+    </div>
+  <h2>How the two formats relate</h2>
+  <p>YAML 1.2 is a superset of JSON, which means any valid JSON document is already valid YAML and converting one way is lossless. Going the other direction is not always, because YAML has features JSON has no way to express: comments, anchors and aliases, multiple documents in one file, and several scalar styles.</p>
+  <p>In practice the conversion people want is "make this configuration readable" or "feed this config to a tool that only speaks JSON", and both work fine as long as you know what YAML is doing with your unquoted values.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>The Norway problem</h3>
+  <p>Under YAML 1.1 rules, which many parsers still follow, the unquoted scalars <code>y</code>, <code>n</code>, <code>yes</code>, <code>no</code>, <code>on</code> and <code>off</code> are booleans. A country list containing <code>NO</code> for Norway yields <code>false</code>. The same rule turns a config value of <code>on</code> into <code>true</code>. Quote any string that could be mistaken for a boolean, and be deliberate about it in generated files.</p>
+
+  <h3>Version numbers lose their meaning</h3>
+  <p><code>version: 1.10</code> parses as the float 1.10, which is 1.1, so the patch digit vanishes. <code>version: 1.2.3</code> stays a string because it is not a valid number, meaning the type of the field changes depending on the value — a trap in anything that compares versions. Quote version strings always.</p>
+  <p>The same applies to anything with leading zeros: an identifier like <code>012345</code> may be read as octal or silently stripped to <code>12345</code>, which breaks zip codes, account numbers and ids.</p>
+
+  <h3>Tabs are forbidden</h3>
+  <p>YAML indentation must be spaces. A single tab character produces a parse error that often points at a confusing line, and editors configured to insert tabs will reintroduce it every time. Setting the editor to expand tabs for <code>.yaml</code> files saves repeated frustration.</p>
+
+  <h3>Indentation is the structure</h3>
+  <p>Unlike JSON's braces, nesting in YAML is carried entirely by leading whitespace, so a block pasted at the wrong depth is still valid YAML — just describing something different. This is the most common cause of a Kubernetes manifest applying cleanly and doing the wrong thing, because the field landed on the wrong parent.</p>
+
+  <h3>Comments and anchors do not survive the round trip</h3>
+  <p>JSON has no comment syntax, so converting YAML to JSON and back loses every comment and expands every alias. If the YAML file is maintained by people, convert for consumption rather than editing the JSON and converting back.</p>
+
+  <h3>Multi-document files</h3>
+  <p>YAML allows several documents in one file separated by <code>---</code>, which Kubernetes manifests use constantly. JSON has no equivalent, so such a file converts to an array of objects or has to be split. A converter handed a multi-document file that returns only the first document has silently dropped the rest.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="../index.html">YAML Validator</a></li><li><a href="md2word.html">Markdown → Word</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-md2word">
+    <div class="panel-header"><h1>Markdown → Word Converter</h1><button class="clear-btn" data-clear="md2word">Clear</button></div>
+    <p class="tool-desc">Paste Markdown and download it as a real <code>.docx</code> file — headings, bold/italic, lists, code blocks, and tables all carry over. Conversion happens entirely in your browser; nothing is uploaded.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="md-input">Markdown</label>
+        <textarea id="md-input" spellcheck="false" placeholder="# My Document
+
+Some **bold** text and a list:
+
+- First item
+- Second item
+
+```
+a code block
+```"></textarea>
+        <button id="md-convert-btn" class="primary-btn">Convert &amp; Download .docx</button>
+      </div>
+      <div class="io-col">
+        <label>Preview</label>
+        <div id="md-preview" class="result-box result-idle md-preview">Paste Markdown and click convert — a preview of the formatted result will appear here, and a .docx file will download automatically.</div>
+      </div>
+    </div>
+  <h2>Converting Markdown for people who want Word</h2>
+  <p>Markdown is the better format to write and review in — it diffs cleanly and lives in version control — but plenty of readers expect a document they can open, comment on and track changes in. Converting at the end gets both.</p>
+  <p>The mapping is mostly predictable: headings become Word heading styles, lists become list paragraphs, emphasis and code spans become character formatting, and tables become Word tables.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Headings must map to styles, not just look big</h3>
+  <p>If a converter renders a heading as large bold text rather than applying the Heading 1 style, Word's navigation pane and automatic table of contents stay empty, and the document is painful to work with. Style mapping is what makes the output a real Word document rather than a picture of one.</p>
+
+  <h3>Images need to be reachable at conversion time</h3>
+  <p>Markdown references images by path or URL; a <code>.docx</code> embeds them. A relative path that is wrong, or a remote image behind authentication, produces a document with broken placeholders — and the failure is often silent. Check the images specifically before sending the file on.</p>
+
+  <h3>Markdown tables are limited</h3>
+  <p>There is no merged cell, no nested table and no cell-level formatting in standard Markdown, so a complex table has to be simplified before it converts or rebuilt afterwards in Word. Anything edited in Word afterwards will also be lost on the next conversion.</p>
+
+  <h3>Raw HTML usually does not survive</h3>
+  <p>Markdown permits inline HTML, and most converters either drop it or emit it as literal text. Anything relying on a <code>&lt;div&gt;</code>, an inline style or an embedded widget will not appear. Keep the source to plain Markdown if the Word output matters.</p>
+
+  <h3>Code blocks lose highlighting</h3>
+  <p>A fenced block with a language tag converts to monospaced text, usually without colour, and long lines wrap rather than scrolling. For a document heavy with code, check that indentation survived — it is what makes the difference between readable and not.</p>
+
+  <h3>The conversion is one-way in practice</h3>
+  <p>Once a reviewer edits the <code>.docx</code>, those edits live only there. Converting back to Markdown is possible but lossy, and merging two sets of changes by hand is error-prone. Decide which format is the source of truth before circulating the file, and treat the other as output — regenerating it rather than editing it.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="../index.html">YAML Validator</a></li><li><a href="jsonyaml.html">JSON ↔ YAML</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-xmljson">
+    <div class="panel-header"><h1>XML &harr; JSON Converter</h1><button class="clear-btn" data-clear="xmljson">Clear</button></div>
+    <p class="tool-desc">Convert between XML and JSON in either direction.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="xmljson-input">Input (XML or JSON)</label>
+        <textarea id="xmljson-input" spellcheck="false" placeholder='<person><name>Bob</name><age>30</age></person>'></textarea>
+        <div class="btn-row">
+          <button id="xmljson-to-json-btn" class="primary-btn">XML → JSON</button>
+          <button id="xmljson-to-xml-btn" class="secondary-btn">JSON → XML</button>
+        </div>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <pre id="xmljson-result" class="result-box result-idle tf-output">Paste XML or JSON and pick a direction.</pre>
+      </div>
+    </div>
+  <h2>Why the conversion is lossy</h2>
+  <p>XML and JSON describe different things. JSON has objects, arrays, strings, numbers, booleans and null. XML has elements, attributes, namespaces, ordering, comments, mixed content and no types at all. There is no canonical mapping between them, so every converter invents its own conventions — commonly prefixing attributes with <code>@</code> and putting element text under a key such as <code>#text</code>.</p>
+  <p>That means a document converted by one tool and back by another will not necessarily match the original, and two converters can produce different JSON from the same XML.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Repeated elements are ambiguous when there is only one</h3>
+  <p>This is the most consequential problem. A list of three <code>&lt;item&gt;</code> elements converts to an array, but a list of <em>one</em> looks identical to a plain field — so the same schema produces an array sometimes and an object other times, depending on the data. Downstream code that indexes into it works in testing and breaks on the single-item case. Converters that let you force a path to always be an array exist precisely because of this.</p>
+
+  <h3>Attributes and child elements collide</h3>
+  <p><code>&lt;user id="1"&gt;&lt;id&gt;2&lt;/id&gt;&lt;/user&gt;</code> has both an attribute and a child called <code>id</code>. In JSON they would be the same key, so a converter must rename one — and which one it renames is a convention, not a rule.</p>
+
+  <h3>Everything in XML is a string</h3>
+  <p>XML has no native numeric or boolean types, so <code>&lt;count&gt;5&lt;/count&gt;</code> may convert to <code>"5"</code> or to <code>5</code> depending on whether the converter guesses types. Guessing introduces its own bug: a part number like <code>007</code> or <code>1.10</code> becomes a number and loses its original form.</p>
+
+  <h3>Namespaces usually get flattened</h3>
+  <p>Prefixes such as <code>soap:</code> are meaningful in XML and have no JSON equivalent. Converters either keep the prefix in the key, strip it, or expand it to the full URI — and stripping it can make two genuinely distinct elements collide.</p>
+
+  <h3>Order is preserved in XML and not in objects</h3>
+  <p>Sibling elements are ordered; JSON object keys are not guaranteed to be. For a document where sequence matters, converting to an object loses that, and only an array representation preserves it.</p>
+
+  <h3>Mixed content has no clean representation</h3>
+  <p>Text interleaved with elements — <code>&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;</code> — cannot be expressed naturally in JSON at all. Any conversion of document-oriented XML, as opposed to data-oriented XML, will be awkward. If the XML is really a document, convert it for inspection rather than as a processing step.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="../index.html">YAML Validator</a></li><li><a href="jsonyaml.html">JSON ↔ YAML</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-jsonschema">
+    <div class="panel-header"><h1>JSON Schema Generator</h1><button class="clear-btn" data-clear="jsonschema">Clear</button></div>
+    <p class="tool-desc">Paste a sample JSON value and get a best-effort JSON Schema (draft-07) inferred from it.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="jsonschema-input">Sample JSON</label>
+        <textarea id="jsonschema-input" spellcheck="false" placeholder='{"name": "Bob", "age": 30}'>{"name": "Bob", "age": 30, "active": true, "tags": ["a", "b"]}</textarea>
+        <button id="jsonschema-generate-btn" class="primary-btn">Generate Schema</button>
+      </div>
+      <div class="io-col">
+        <label>Schema</label>
+        <pre id="jsonschema-result" class="result-box result-idle tf-output">Paste sample JSON and click "Generate Schema".</pre>
+      </div>
+    </div>
+  <h2>How JSON Schema describes data</h2>
+  <p>A schema is itself JSON, describing the shape another document must have. The core keywords:</p>
+  <ul>
+    <li><code>type</code> — <code>object</code>, <code>array</code>, <code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>null</code>.</li>
+    <li><code>properties</code> — the schema for each named field of an object.</li>
+    <li><code>required</code> — an array of property names that must be present.</li>
+    <li><code>items</code> — the schema every element of an array must satisfy.</li>
+    <li><code>enum</code> — an explicit list of permitted values.</li>
+    <li><code>format</code> — a semantic hint such as <code>email</code>, <code>uri</code> or <code>date-time</code>.</li>
+    <li><code>additionalProperties</code> — whether fields not listed are allowed.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Listing a property does not make it required</h3>
+  <p>This catches nearly everyone once. <code>properties</code> only says "if this field appears, it must look like this" — an empty object validates against a schema with a dozen properties. Requiring a field means naming it in the separate <code>required</code> array, and forgetting that produces a schema that accepts almost anything.</p>
+
+  <h3><code>additionalProperties</code> defaults to true</h3>
+  <p>Unknown fields are permitted unless you set it to <code>false</code>. That default is right for forward compatibility and wrong for catching typos: a config with <code>reties: 3</code> instead of <code>retries: 3</code> validates cleanly and then uses the default retry count. For configuration schemas, setting it to <code>false</code> turns a silent misconfiguration into an error at load time.</p>
+
+  <h3><code>format</code> is advisory in many validators</h3>
+  <p>By specification, <code>format</code> is an annotation rather than an assertion, and several libraries do not enforce it unless explicitly configured to. A schema relying on <code>"format": "email"</code> for validation may be enforcing nothing at all. Where it matters, pair it with a <code>pattern</code>.</p>
+
+  <h3><code>integer</code> and <code>number</code> differ, and JSON has one numeric type</h3>
+  <p><code>1.0</code> is usually accepted as an integer because it has no fractional part, while <code>1.5</code> is not. More awkwardly, large integers can lose precision passing through JavaScript, so an id beyond 2^53 may validate and still be wrong by the time it is used.</p>
+
+  <h3>Draft versions are not compatible</h3>
+  <p>Draft-04, Draft-07 and 2020-12 differ in real ways — <code>exclusiveMinimum</code> changed from a boolean to a number, and the keywords for array tuples were renamed. A schema written for one draft can be silently misinterpreted by a validator expecting another. Declare <code>$schema</code> explicitly and check what your library supports.</p>
+
+  <h3>A generated schema is a starting point</h3>
+  <p>Inferring a schema from a sample captures the shape of that sample, not your intent: optional fields that happened to be present become required, an enum is missed, and a nullable field looks non-nullable. Generation saves the typing; the constraints still need a human.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="../index.html">YAML Validator</a></li><li><a href="jsonyaml.html">JSON ↔ YAML</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-structdiff">
+    <div class="panel-header"><h1>Config Diff (JSON / YAML)</h1><button class="clear-btn" data-clear="structdiff">Clear</button></div>
+    <p class="tool-desc">A line-based diff is a one-liner. A <em>structural</em> diff is not: this ignores key order and formatting and reports the exact paths that differ — which is what you want when comparing two manifests or two <code>values.yaml</code> files.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="structdiff-left">Left document (JSON or YAML)</label>
+        <textarea id="structdiff-left" spellcheck="false">{"replicas":2,"image":"app:1.2.0","env":{"LOG_LEVEL":"info"}}</textarea>
+        <label for="structdiff-right">Right document</label>
+        <textarea id="structdiff-right" spellcheck="false">{"image":"app:1.3.0","replicas":3,"env":{"LOG_LEVEL":"debug","DEBUG":"1"}}</textarea>
+        <button id="structdiff-run-btn" class="primary-btn">Compare</button>
+      </div>
+      <div class="io-col">
+        <label>Differences</label>
+        <div id="structdiff-result" class="result-box result-idle tf-output">Paste both sides and click "Compare".</div>
+      </div>
+    </div>
+  <h2>Why a structural diff beats a text diff</h2>
+  <p>A line-based diff compares characters, so it reports differences that do not exist and misses ones that do. Reformatting a file, reordering keys, or changing indentation produces a wall of changes with no semantic content — while a genuine change buried in a reformatted block is easy to miss entirely.</p>
+  <p>A structural diff parses both documents first and compares the resulting data, so key order and whitespace stop mattering and what you see is what actually changed.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Object key order is meaningless, array order is not</h3>
+  <p>Two objects with the same pairs in a different order are equal. Two arrays with the same elements in a different order are <em>not</em> — and sometimes the order genuinely matters, as with nginx location blocks, IAM statement evaluation, or an ordered pipeline. A tool that normalises array order will hide real differences; one that does not will report noise when the order is irrelevant. Know which case you are in.</p>
+
+  <h3>Type changes hide inside equal-looking values</h3>
+  <p><code>"8080"</code> and <code>8080</code> render identically in a terminal and behave differently in code. The same applies to <code>"true"</code> versus <code>true</code>, and to a null that became an empty string. These are exactly the changes a text diff cannot flag and that cause configuration bugs.</p>
+
+  <h3>Absent is not the same as null or empty</h3>
+  <p>A missing key, a key set to null, and a key set to an empty string are three different states, and they often behave differently — a missing field may take a default while an explicit null overrides it. A diff that collapses them will report "no change" across a meaningful one.</p>
+
+  <h3>Numeric precision drifts through parsers</h3>
+  <p>Round-tripping through a JSON parser can turn <code>1.0</code> into <code>1</code>, or lose precision on integers beyond 2^53. The difference reported may therefore be an artefact of parsing rather than a change in the source file.</p>
+
+  <h3>Comments disappear</h3>
+  <p>Parsing YAML to compare it discards comments, so a change that only edits a comment shows as no change at all. If the comment carries operational meaning — and in configuration it often does — a structural diff is the wrong tool for reviewing it.</p>
+
+  <h3>Diffing rendered output, not templates</h3>
+  <p>For Helm or Kustomize, comparing the templates tells you little; comparing the rendered manifests tells you what will actually be applied. Rendering both sides first and diffing the output is how you catch a values change that silently altered something three levels down.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="jsonyaml.html">JSON ↔ YAML</a></li><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="jsonschema.html">JSON Schema Generator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-k8slint">
+    <div class="panel-header"><h1>Kubernetes Manifest Analyzer</h1><button class="clear-btn" data-clear="k8slint">Clear</button></div>
+    <p class="tool-desc">Paste a Deployment, Pod, or similar manifest and get a lightweight lint check — missing resource limits, missing probes, privileged containers, <code>:latest</code> tags, and more.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="k8s-input">Kubernetes manifest (YAML)</label>
+        <textarea id="k8s-input" spellcheck="false" placeholder="apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: my-app:latest"></textarea>
+        <button id="k8s-lint-btn" class="primary-btn">Analyze</button>
+      </div>
+      <div class="io-col">
+        <label>Findings</label>
+        <div id="k8s-result" class="result-box result-idle">Paste a manifest and click "Analyze".</div>
+      </div>
+    </div>
+  <h2>What to check in a manifest</h2>
+  <p>A manifest that applies cleanly can still be wrong in ways that only show up under load, during a rollout, or during an incident. These are the checks worth making every time.</p>
+  <ul>
+    <li>Resource requests and limits are set on every container.</li>
+    <li>Liveness and readiness probes exist and are distinct.</li>
+    <li>The image tag is pinned, not <code>latest</code>.</li>
+    <li>A security context drops privileges and avoids running as root.</li>
+    <li>Selectors and pod labels actually match.</li>
+    <li>More than one replica, with a disruption budget, for anything that matters.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Readiness and liveness are not interchangeable</h3>
+  <p>Readiness controls whether traffic is sent to the pod; liveness controls whether the pod is killed. Pointing both at the same endpoint means a dependency outage that makes the app temporarily unready also makes it get restarted, repeatedly, turning a recoverable degradation into a crash loop. Readiness should reflect "can I serve right now", liveness only "am I irrecoverably stuck".</p>
+
+  <h3>A missing startup probe kills slow starters</h3>
+  <p>An application that takes ninety seconds to warm up will be killed by a liveness probe with a thirty-second threshold, forever. A startup probe exists precisely for this: liveness does not begin until startup succeeds. Without one, the usual workaround is a long <code>initialDelaySeconds</code>, which then delays detection of genuine hangs for the whole life of the pod.</p>
+
+  <h3>Selector and labels drift apart silently</h3>
+  <p>A Deployment's <code>selector.matchLabels</code> must match the pod template's labels. If they do not, the Deployment creates pods it does not consider its own and keeps creating more. Worse, a Deployment's selector is immutable after creation, so fixing a mistake means deleting and recreating the object.</p>
+
+  <h3>No limits means the node decides</h3>
+  <p>A container without a memory limit can consume whatever is available and push the node into memory pressure, at which point the kubelet starts evicting pods — frequently other people's. Best-effort pods are evicted first, so an unlimited container can survive while well-behaved neighbours are killed.</p>
+
+  <h3>One replica is not an availability strategy</h3>
+  <p>A single replica means every node drain, every rollout and every eviction is downtime. Adding a PodDisruptionBudget without adding replicas does not help either — it just blocks the drain instead, which turns a maintenance operation into a stuck one.</p>
+
+  <h3><code>terminationGracePeriodSeconds</code> interacts with your shutdown</h3>
+  <p>Kubernetes sends SIGTERM, waits the grace period, then sends SIGKILL. If the app ignores SIGTERM, or runs under a shell that does not forward it, every pod termination takes the full grace period and then dies hard mid-request. Handling SIGTERM and removing the pod from the load balancer before exiting is what makes rollouts invisible to users.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="dockerlint.html">Dockerfile Checker</a></li><li><a href="k8squantity.html">K8s Quantity Converter</a></li><li><a href="resourcequota.html">K8s Resource Quota Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-dockerlint">
+    <div class="panel-header"><h1>Dockerfile Best-Practices Checker</h1><button class="clear-btn" data-clear="dockerlint">Clear</button></div>
+    <p class="tool-desc">Paste a Dockerfile and catch common issues: <code>latest</code> tags, running as root, unpinned installs, missing HEALTHCHECK, and more.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="docker-input">Dockerfile</label>
+        <textarea id="docker-input" spellcheck="false" placeholder="FROM node:latest
+RUN apt-get update && apt-get install curl
+COPY . .
+CMD [&quot;node&quot;, &quot;index.js&quot;]"></textarea>
+        <button id="docker-lint-btn" class="primary-btn">Check</button>
+      </div>
+      <div class="io-col">
+        <label>Findings</label>
+        <div id="docker-result" class="result-box result-idle">Paste a Dockerfile and click "Check".</div>
+      </div>
+    </div>
+  <h2>What makes a Dockerfile good</h2>
+  <p>Most Dockerfile problems come down to three things: how big the image ends up, how often the cache is invalidated, and what the container runs as. The rest is detail.</p>
+
+  <h3>Order instructions by how often they change</h3>
+  <p>Each instruction produces a layer, and changing one invalidates every layer after it. Copying your whole source tree before installing dependencies means every code edit reinstalls everything. Copy the manifest first, install, then copy the source:</p>
+  <p><code>COPY package*.json ./</code> → <code>RUN npm ci</code> → <code>COPY . .</code></p>
+  <p>That single reordering is usually the largest build-time win available.</p>
+
+  <h3>Use multi-stage builds</h3>
+  <p>Compilers, headers and build tools do not belong in a runtime image. Build in one stage, copy only the resulting artefact into a slim final stage, and the image shrinks by hundreds of megabytes while losing a large amount of attack surface with it.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Cleaning up in a later layer saves nothing</h3>
+  <p>Deleting a file in a subsequent <code>RUN</code> does not reclaim the space — the earlier layer still contains it, and the image carries both. The cleanup has to happen in the <em>same</em> instruction that created the files: <code>RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends foo &amp;&amp; rm -rf /var/lib/apt/lists/*</code>. The same applies to secrets: a credential added in one layer and deleted in the next is still in the image for anyone who pulls it.</p>
+
+  <h3><code>:latest</code> is not a version</h3>
+  <p>It is just the default tag, and it moves. A build that worked yesterday can produce a different base image today, which turns a reproducible build into a lottery and makes rollbacks meaningless. Pin a specific tag, and pin by digest where the stakes justify it.</p>
+
+  <h3>Containers run as root unless you say otherwise</h3>
+  <p>Without a <code>USER</code> instruction the process runs as root inside the container, so a compromise starts with full privileges and a path toward the host via any misconfiguration. Create an unprivileged user and switch to it after installation, remembering that file ownership on anything copied in needs to match.</p>
+
+  <h3><code>ADD</code> does more than you want</h3>
+  <p>It auto-extracts archives and can fetch remote URLs, both of which are surprising when you only meant to copy a file. Use <code>COPY</code> unless you specifically want extraction.</p>
+
+  <h3>A missing <code>.dockerignore</code> sends everything</h3>
+  <p>Without one, <code>COPY . .</code> ships <code>.git</code>, <code>node_modules</code>, local env files and build output into the image and the build context. That bloats the image, slows every build, and is a routine way credentials end up published. Treat it as mandatory, not optional.</p>
+
+  <h3><code>ENTRYPOINT</code> and <code>CMD</code> in shell form break signals</h3>
+  <p>Written as a bare string, the command runs under <code>/bin/sh -c</code>, which does not forward <code>SIGTERM</code> to your process — so the container ignores a graceful stop and gets killed after the timeout. Use the exec form, <code>CMD ["node", "server.js"]</code>, so your process is PID 1 and receives signals directly.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="k8squantity.html">K8s Quantity Converter</a></li><li><a href="resourcequota.html">K8s Resource Quota Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-k8squantity">
+    <div class="panel-header"><h1>Kubernetes Quantity Converter</h1><button class="clear-btn" data-clear="k8squantity">Clear</button></div>
+    <p class="tool-desc">Convert Kubernetes resource quantities (like <code>500m</code>, <code>1Gi</code>, <code>250Mi</code>) into human-readable values.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="k8sq-input">Quantity (e.g. 500m, 1Gi, 250Mi, 2)</label>
+        <input type="text" id="k8sq-input" spellcheck="false" placeholder="1Gi" value="1Gi">
+        <button id="k8sq-convert-btn" class="primary-btn">Convert</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="k8sq-result" class="result-box result-idle">Enter a quantity and click "Convert".</div>
+      </div>
+    </div>
+  <h2>How Kubernetes expresses quantities</h2>
+  <p>Kubernetes uses two different suffix families, and confusing them is the most common sizing mistake.</p>
+  <ul>
+    <li><strong>Binary:</strong> <code>Ki</code>, <code>Mi</code>, <code>Gi</code>, <code>Ti</code> — powers of 1024. <code>1Gi</code> is 1,073,741,824 bytes.</li>
+    <li><strong>Decimal:</strong> <code>K</code>, <code>M</code>, <code>G</code>, <code>T</code> — powers of 1000. <code>1G</code> is 1,000,000,000 bytes.</li>
+  </ul>
+  <p>The gap is about 7% at gigabyte scale and widens as the unit grows. For memory you almost always want the binary form, because that is how the kernel and the container runtime actually account for it.</p>
+
+  <h3>CPU is measured in millicores</h3>
+  <p>CPU quantities use <code>m</code> for thousandths of a core: <code>500m</code> is half a core, <code>1000m</code> is exactly one core, and a bare <code>1</code> means the same as <code>1000m</code>. CPU is compressible — a container over its limit is throttled, not killed.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3><code>1M</code> is not one mebibyte</h3>
+  <p>Writing <code>memory: 512M</code> when you meant <code>512Mi</code> gives you about 24 MiB less than intended. That is usually harmless, until it is the margin that causes an OOMKill under load. The lowercase <code>m</code> is worse: <code>memory: 100m</code> is not 100 megabytes, it is 0.1 <em>bytes</em>, because <code>m</code> means milli. Kubernetes accepts it without complaint.</p>
+
+  <h3>Memory limits are enforced by killing</h3>
+  <p>Unlike CPU, memory is incompressible. A container that exceeds its memory limit is terminated with OOMKilled — there is no throttling, no warning, and the process gets no chance to shed load. The exit code is 137. Setting a limit lower than genuine peak usage converts a slow-memory problem into a crash loop.</p>
+
+  <h3>Requests schedule, limits constrain</h3>
+  <p>The request is what the scheduler uses to decide whether a node has room; the limit is what the runtime enforces at execution. Setting a request far below the limit lets the scheduler overcommit a node, which works until several pods peak together and the node starts evicting. Setting them equal gives the pod Guaranteed quality of service and the most predictable behaviour.</p>
+
+  <h3>Node capacity is not what you can use</h3>
+  <p>A node advertises capacity, but the kubelet reserves part of it for the system and the kubelet itself, leaving a smaller allocatable figure. Sizing pods against the node's total memory rather than its allocatable memory is why a pod that "obviously fits" stays Pending.</p>
+
+  <h3>Fractional CPU below 100m behaves poorly</h3>
+  <p>CPU requests translate to cgroup shares, and very small values give a container so little guaranteed time that it is starved under contention — which looks like random latency rather than a resource problem. If a workload is latency sensitive, do not request less than about 100m.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="dockerlint.html">Dockerfile Checker</a></li><li><a href="resourcequota.html">K8s Resource Quota Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-resourcequota">
+    <div class="panel-header"><h1>Kubernetes Resource Quota Calculator</h1><button class="clear-btn" data-clear="resourcequota">Clear</button></div>
+    <p class="tool-desc">Paste CPU or memory quantities (one per line, e.g. from each container's <code>resources.requests</code>) and get the total.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="resourcequota-input">Quantities (one per line)</label>
+        <textarea id="resourcequota-input" spellcheck="false" placeholder="500m
+250m
+1000m">500m
+250m
+1000m</textarea>
+        <button id="resourcequota-calc-btn" class="primary-btn">Sum</button>
+      </div>
+      <div class="io-col">
+        <label>Total</label>
+        <div id="resourcequota-result" class="result-box result-idle">Paste quantities and click "Sum".</div>
+      </div>
+    </div>
+  <h2>How quotas and limits fit together</h2>
+  <p>Three objects control resource consumption in a namespace, and they do different jobs:</p>
+  <ul>
+    <li><strong>ResourceQuota</strong> caps the namespace in aggregate — total CPU, total memory, and counts of objects such as pods or services.</li>
+    <li><strong>LimitRange</strong> applies per container: default requests and limits for anything that does not specify its own, plus minimum and maximum bounds.</li>
+    <li><strong>Pod requests and limits</strong> are what an individual workload asks for and is held to.</li>
+  </ul>
+  <p>A quota without a LimitRange is the usual misconfiguration, because of how the two interact.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>A CPU or memory quota makes requests mandatory</h3>
+  <p>Once a ResourceQuota sets <code>requests.cpu</code> or <code>limits.memory</code>, every pod created in that namespace must declare the corresponding value — otherwise it is rejected outright. Applying a quota to a namespace full of existing manifests that omit resources will break the next deployment of every one of them. A LimitRange supplying defaults prevents this, which is why the two are normally introduced together.</p>
+
+  <h3>Quota is checked at admission, not continuously</h3>
+  <p>It constrains what can be <em>created</em>, based on declared requests and limits. It does not measure actual usage, so a namespace well within quota can still exhaust a node if its pods consistently use more than they requested. Quota is a budgeting tool for cluster capacity planning, not a runtime guard.</p>
+
+  <h3>Lowering a quota does not evict anything</h3>
+  <p>Existing pods above the new figure keep running; the quota only blocks new creations. So a namespace can sit over quota indefinitely, and the symptom appears later as a failed rollout rather than at the moment the limit was changed.</p>
+
+  <h3>Object count quotas cause confusing failures</h3>
+  <p>Limits on <code>pods</code> or <code>count/deployments</code> surface as admission errors from controllers rather than from the user — a Deployment that simply never reaches its replica count, with the real reason buried in the ReplicaSet's events. When replicas are stuck, check namespace quota before debugging the scheduler.</p>
+
+  <h3>Terminating pods still count</h3>
+  <p>Pods in Terminating state continue to consume quota until they are fully gone, so a rolling update in a tight namespace can deadlock: the new pod cannot be created because the old one has not finished shutting down. Leaving headroom of at least one pod's worth of resources, or using <code>maxSurge: 0</code>, avoids it.</p>
+
+  <h3>Quota is per namespace, scheduling is per node</h3>
+  <p>Staying inside quota says nothing about whether any single node has room for a given pod. A namespace with generous quota can still have pods stuck Pending because no node has a contiguous block of the requested size, which is a bin-packing problem rather than a quota one.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="dockerlint.html">Dockerfile Checker</a></li><li><a href="k8squantity.html">K8s Quantity Converter</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-jsonpath">
+    <div class="panel-header"><h1>kubectl JSONPath Tester</h1><button class="clear-btn" data-clear="jsonpath">Clear</button></div>
+    <p class="tool-desc">Iterate on a <code>kubectl -o jsonpath=</code> expression against real output, without a cluster. Supports dot paths, <code>[*]</code>, indices, <code>[a:b]</code> slices and <code>..</code> descent.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="jsonpath-input">JSON (e.g. <code>kubectl get pods -o json</code>)</label>
+        <textarea id="jsonpath-input" spellcheck="false" placeholder='{"items":[...]}'>{"items":[{"metadata":{"name":"web-1","labels":{"app":"web"}},"status":{"phase":"Running"}},{"metadata":{"name":"db-0","labels":{"app":"db"}},"status":{"phase":"Pending"}}]}</textarea>
+        <label for="jsonpath-expr">JSONPath expression</label>
+        <input type="text" id="jsonpath-expr" spellcheck="false" placeholder="{.items[*].metadata.name}" value="{.items[*].metadata.name}">
+        <button id="jsonpath-run-btn" class="primary-btn">Evaluate</button>
+      </div>
+      <div class="io-col">
+        <label>Matches</label>
+        <div id="jsonpath-result" class="result-box result-idle">Enter an expression and click "Evaluate".</div>
+      </div>
+    </div>
+  <h2>kubectl JSONPath syntax</h2>
+  <p>JSONPath lets you pull specific fields out of kubectl output instead of parsing it with text tools. The basics:</p>
+  <ul>
+    <li><code>{.items[*].metadata.name}</code> — the name of every item.</li>
+    <li><code>{.items[0].spec.containers[*].image}</code> — every image in the first item.</li>
+    <li><code>{range .items[*]}{.metadata.name}{"\t"}{.status.phase}{"\n"}{end}</code> — iterate and format.</li>
+    <li><code>{.items[?(@.status.phase=="Running")].metadata.name}</code> — filter on a field.</li>
+    <li><code>{.metadata.annotations['kubernetes\.io/description']}</code> — a key containing a dot must be escaped.</li>
+  </ul>
+  <p>Use it as <code>kubectl get pods -o jsonpath='...'</code>. The surrounding single quotes keep the shell out of it.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>kubectl's JSONPath is not standard JSONPath</h3>
+  <p>It is a Go implementation with its own dialect. <code>$</code> is optional, <code>range</code>/<code>end</code> exist and are not in the original spec, and several filter and script expressions from other JSONPath libraries are unsupported. An expression copied from a general JSONPath tester frequently fails here, and vice versa.</p>
+
+  <h3>Dots in keys must be escaped</h3>
+  <p>Kubernetes labels and annotations are full of keys like <code>app.kubernetes.io/name</code>, and a bare dot is a path separator. Use bracket notation with escaped dots: <code>{.metadata.labels['app\.kubernetes\.io/name']}</code>. Forgetting this returns nothing rather than an error, which makes it look like the field is missing.</p>
+
+  <h3>No output usually means no match, not an error</h3>
+  <p>A path that does not exist produces an empty result silently. In a script that is indistinguishable from a legitimately empty value, so a typo becomes a silent wrong answer. When a query returns nothing unexpectedly, check the raw object with <code>-o json</code> before assuming the resource is absent.</p>
+
+  <h3>Output is unseparated by default</h3>
+  <p><code>{.items[*].metadata.name}</code> joins names with spaces and no trailing newline, which makes the result awkward to loop over. The <code>range</code> form with explicit <code>{"\n"}</code> is almost always what you want in a script.</p>
+
+  <h3>Quoting breaks on Windows</h3>
+  <p>The single quotes that protect the expression in bash are not quotes in <code>cmd.exe</code>, and PowerShell interprets the contents differently again. On Windows, swap to double quotes and escape the inner ones, or put the expression in a file and reference it.</p>
+
+  <h3>Consider <code>-o custom-columns</code> instead</h3>
+  <p>For the common case of "show me these three fields as a table", custom-columns is shorter and more readable than the equivalent range expression: <code>-o custom-columns=NAME:.metadata.name,PHASE:.status.phase</code>. Reach for JSONPath when you need filtering or a format custom-columns cannot express.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="jsonyaml.html">JSON ↔ YAML</a></li><li><a href="jsonschema.html">JSON Schema Generator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-k8sgen">
+    <div class="panel-header"><h1>Kubernetes Manifest Generator</h1><button class="clear-btn" data-clear="k8sgen">Clear</button></div>
+    <p class="tool-desc"><code>kubectl create deployment --dry-run</code> gives you a Deployment and nothing else; stitching a matching Service and Ingress by hand is the actual chore. This emits all three, with resource requests, a readiness probe and a non-root <code>securityContext</code> already in place.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="k8sgen-name">App name (RFC 1123 label)</label>
+        <input type="text" id="k8sgen-name" spellcheck="false" placeholder="checkout-api" value="checkout-api">
+        <label for="k8sgen-image">Container image</label>
+        <input type="text" id="k8sgen-image" spellcheck="false" placeholder="ghcr.io/acme/checkout:1.4.2" value="ghcr.io/acme/checkout:1.4.2">
+        <label for="k8sgen-port">Container port</label>
+        <input type="text" id="k8sgen-port" spellcheck="false" placeholder="8080" value="8080">
+        <label for="k8sgen-replicas">Replicas</label>
+        <input type="text" id="k8sgen-replicas" spellcheck="false" placeholder="2" value="2">
+        <label for="k8sgen-svctype">Service type</label>
+        <select id="k8sgen-svctype">
+          <option value="ClusterIP">ClusterIP</option>
+          <option value="NodePort">NodePort</option>
+          <option value="LoadBalancer">LoadBalancer</option>
+        </select>
+        <label for="k8sgen-host">Ingress host (leave blank to skip the Ingress)</label>
+        <input type="text" id="k8sgen-host" spellcheck="false" placeholder="checkout.example.com" value="checkout.example.com">
+        <button id="k8sgen-generate-btn" class="primary-btn">Generate</button>
+      </div>
+      <div class="io-col">
+        <label>Manifests</label>
+        <div id="k8sgen-result" class="result-box result-idle tf-output">Fill in the fields and click "Generate".</div>
+      </div>
+    </div>
+  <h2>The objects a service needs</h2>
+  <p>Running something on Kubernetes usually means three objects working together, each with a distinct job:</p>
+  <ul>
+    <li><strong>Deployment</strong> — declares the pod template and how many replicas, and manages rollouts.</li>
+    <li><strong>Service</strong> — gives those pods a stable name and virtual IP, selecting them by label.</li>
+    <li><strong>Ingress</strong> — routes external HTTP traffic to a Service by host and path.</li>
+  </ul>
+  <p>ConfigMaps and Secrets supply configuration, mounted as files or injected as environment variables.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Labels are the wiring, and they must match exactly</h3>
+  <p>A Service finds pods through <code>spec.selector</code> matching the pod template's labels — not the Deployment's own labels, which is the distinction people miss. One typo and the Service has no endpoints, presenting as connection refused rather than as a configuration error. <code>kubectl get endpoints &lt;service&gt;</code> showing none is the fastest confirmation.</p>
+
+  <h3><code>targetPort</code> and <code>port</code> are different things</h3>
+  <p><code>port</code> is what the Service listens on; <code>targetPort</code> is the container's port. Setting them to the same value out of habit works until they differ, and then traffic goes nowhere. Naming the container port and referring to it by name in the Service is more robust than repeating a number in two places.</p>
+
+  <h3>ConfigMap changes do not restart pods</h3>
+  <p>Updating a ConfigMap does not roll the Deployment. Values mounted as volumes update in place after a delay, but anything read at startup — and every environment variable — keeps the old value until the pod restarts. The common fix is to put a hash of the config in a pod annotation so that changing it naturally triggers a rollout.</p>
+
+  <h3>Secrets are base64, not encryption</h3>
+  <p>A Secret is encoded, not encrypted, and anyone who can read the object can read its contents. Committing one to git publishes the credential as surely as committing the plaintext would. Encryption at rest must be enabled on the cluster, and access controlled through RBAC, before a Secret is meaningfully secret.</p>
+
+  <h3>Namespace is easy to forget</h3>
+  <p>A manifest without an explicit namespace lands wherever the current context points, which is how objects end up in <code>default</code> and then cannot find each other. Cross-namespace DNS needs the fully qualified form, <code>service.namespace.svc.cluster.local</code> — the short name only resolves within the same namespace.</p>
+
+  <h3>Generated manifests need review, not just application</h3>
+  <p>A generator gives you a correct skeleton, not a production-ready object. Resource requests, probes, security context, replica count and disruption budgets all depend on what the workload actually does, and none can be inferred from an image name. Treat generated YAML as a first draft.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8slint.html">K8s Manifest Analyzer</a></li><li><a href="k8squantity.html">K8s Quantity Converter</a></li><li><a href="resourcequota.html">K8s Resource Quota Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-slo">
+    <div class="panel-header"><h1>SLO & Error Budget Calculator</h1><button class="clear-btn" data-clear="slo">Clear</button></div>
+    <p class="tool-desc">"How much downtime does 99.9% actually buy me?" is arithmetic in units nobody keeps in their head, and there is no CLI for it. Enter a target to get the error budget per day, week and window; add an observed figure to see how much of it is already spent.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="slo-target">SLO target (%)</label>
+        <input type="text" id="slo-target" spellcheck="false" placeholder="99.9" value="99.9">
+        <label for="slo-window">Window</label>
+        <select id="slo-window">
+          <option value="1">1 day</option>
+          <option value="7">7 days</option>
+          <option value="28">28 days</option>
+          <option value="30" selected>30 days</option>
+          <option value="90">90 days (quarter)</option>
+          <option value="365">365 days (year)</option>
+        </select>
+        <label for="slo-observed">Observed availability (%) &mdash; optional</label>
+        <input type="text" id="slo-observed" spellcheck="false" placeholder="99.95">
+        <button id="slo-calc-btn" class="primary-btn">Calculate</button>
+      </div>
+      <div class="io-col">
+        <label>Error budget</label>
+        <div id="slo-result" class="result-box result-idle tf-output">Enter a target and click "Calculate".</div>
+      </div>
+    </div>
+  <h2>SLI, SLO, SLA and the error budget</h2>
+  <ul>
+    <li>An <strong>SLI</strong> is the measurement — the proportion of requests served successfully, or under some latency threshold.</li>
+    <li>An <strong>SLO</strong> is the target for that measurement, such as 99.9% over 30 days.</li>
+    <li>An <strong>SLA</strong> is a contract with consequences, usually set looser than the internal SLO.</li>
+    <li>The <strong>error budget</strong> is what is left over: 100% minus the SLO. At 99.9%, you may fail 0.1% of requests.</li>
+  </ul>
+
+  <h3>What the nines actually cost</h3>
+  <p>Per 30-day month, allowed downtime is roughly:</p>
+  <ul>
+    <li>99% — about 7 hours 18 minutes.</li>
+    <li>99.9% — about 43 minutes.</li>
+    <li>99.95% — about 22 minutes.</li>
+    <li>99.99% — about 4 minutes 23 seconds.</li>
+  </ul>
+  <p>Reading those numbers out loud is the fastest way to settle an argument about targets. Four minutes a month leaves no room for a manual response — it requires automated failover, which is a budget decision as much as an engineering one.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>The error budget is meant to be spent</h3>
+  <p>A team consistently at 100% availability against a 99.9% target is being too conservative — the budget exists to be exchanged for release velocity. Its real purpose is as a shared decision rule: budget remaining means ship, budget exhausted means stop feature work and fix reliability. Without that agreement in advance, an SLO is just a number on a dashboard.</p>
+
+  <h3>Averages hide the failures users notice</h3>
+  <p>Mean latency is dominated by the common case and says nothing about the tail. A service with a 50ms average can still have a p99 of three seconds, and that p99 is a real slice of real users, hitting the same people repeatedly if it correlates with large accounts or slow networks. Define latency objectives on percentiles, never on the mean.</p>
+
+  <h3>Averaging percentiles is not valid</h3>
+  <p>You cannot average p99 across instances or time buckets and get the p99 of the whole. It is a quantile, not an additive quantity, and the result of averaging is a number with no meaning. Aggregate from histograms instead.</p>
+
+  <h3>Measure where the user is</h3>
+  <p>Server-side success rates miss everything that never reached the server — DNS failures, load balancer errors, TLS problems, outages in a region your probes do not cover. A dashboard showing 100% during an outage usually means the measurement point is inside the failure.</p>
+
+  <h3>Alert on burn rate, not on the threshold</h3>
+  <p>Alerting when the monthly SLO is breached tells you after it is too late; alerting on every brief dip produces noise nobody reads. Burn-rate alerts fire when the budget is being consumed fast enough to matter — a fast burn paging immediately, a slow burn raising a ticket. That distinction is what makes the alerts actionable.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="k8sgen.html">K8s Manifest Generator</a></li><li><a href="resourcequota.html">K8s Resource Quota Calculator</a></li><li><a href="timestamp.html">Unix Timestamp Converter</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-tf">
+    <div class="panel-header"><h1>Terraform Plan Formatter</h1><button class="clear-btn" data-clear="tf">Clear</button></div>
+    <p class="tool-desc">Paste raw <code>terraform plan</code> output (color codes lost from a copy-paste) and get it re-highlighted — creates in green, destroys in red, updates in yellow — so it's actually readable again.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="tf-input">Raw plan output</label>
+        <textarea id="tf-input" spellcheck="false" placeholder="  # aws_instance.web will be created
+  + resource &quot;aws_instance&quot; &quot;web&quot; {
+      + ami           = &quot;ami-0123456789&quot;
+      + instance_type = &quot;t3.micro&quot;
+    }
+
+  # aws_s3_bucket.old will be destroyed
+  - resource &quot;aws_s3_bucket&quot; &quot;old&quot; {
+      - bucket = &quot;my-old-bucket&quot; -> null
+    }"></textarea>
+        <button id="tf-format-btn" class="primary-btn">Format Plan</button>
+      </div>
+      <div class="io-col">
+        <label>Formatted output</label>
+        <pre id="tf-result" class="result-box result-idle tf-output">Paste a plan and click "Format Plan" to see it highlighted here.</pre>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch swatch-add"></span> create</span>
+      <span class="legend-item"><span class="swatch swatch-remove"></span> destroy</span>
+      <span class="legend-item"><span class="swatch swatch-change"></span> update in-place</span>
+      <span class="legend-item"><span class="swatch swatch-replace"></span> replace (destroy + create)</span>
+    </div>
+  <h2>Reading a Terraform plan</h2>
+  <p>Every line in a plan is prefixed with a symbol saying what will happen. Reading them correctly is the difference between a routine apply and an outage.</p>
+  <ul>
+    <li><code>+</code> — create.</li>
+    <li><code>-</code> — destroy.</li>
+    <li><code>~</code> — update in place, no downtime.</li>
+    <li><code>-/+</code> — <strong>destroy and recreate</strong>. The resource is replaced.</li>
+    <li><code>+/-</code> — create the replacement first, then destroy the old one (<code>create_before_destroy</code>).</li>
+    <li><code>&lt;=</code> — a data source being read.</li>
+  </ul>
+  <p>The summary line at the end is the thing to read out loud before approving: "3 to add, 1 to change, 2 to destroy".</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3><code>-/+</code> is the one to stop on</h3>
+  <p>Replacement means the existing resource is destroyed. For a database, a stateful volume or anything holding data, that is data loss unless you have explicitly planned for it. Terraform names the attribute that forced it — "forces replacement" appears next to the field — so check whether the change is worth the replacement before approving.</p>
+
+  <h3>A plan is a snapshot, not a promise</h3>
+  <p>It is computed against state and reality at that moment. If anything changes between plan and apply — another engineer applying, a console edit, an autoscaler — the apply can do something the plan did not show. Saving the plan to a file and applying <em>that</em> file is what makes the two match, and is why CI pipelines do it.</p>
+
+  <h3>Drift is invisible until the next plan</h3>
+  <p>Manual changes made in the console do not notify anyone; they surface as unexpected diffs weeks later, often in an unrelated change. The plan showing something you did not write is a signal that someone changed it by hand, not that Terraform is confused.</p>
+
+  <h3>State is the source of truth, and it holds secrets</h3>
+  <p>Terraform decides what to do by comparing configuration against state, not against reality — so a resource deleted from state still exists in the cloud and will be recreated. State files also store resource attributes in plain text, including generated passwords and keys, which is why remote state needs encryption and tight access control.</p>
+
+  <h3>Locking prevents a corrupted state, so do not force it</h3>
+  <p>Concurrent applies against the same state can corrupt it. The backend takes a lock to prevent that; <code>-lock=false</code> and force-unlock exist for genuinely stuck locks, not for impatience. Unlocking while another apply is live is how a state file becomes unusable.</p>
+
+  <h3><code>(known after apply)</code> hides the real diff</h3>
+  <p>Values that depend on resources not yet created display as unknown, which can mask a change downstream. A plan full of unknowns on a large change is worth applying in smaller pieces, with <code>-target</code> if necessary, so each step produces a plan you can actually read.</p>
+
+  </section>
+
+<section class="tool-panel" id="panel-iampolicy">
+    <div class="panel-header"><h1>IAM Policy Analyzer</h1><button class="clear-btn" data-clear="iampolicy">Clear</button></div>
+    <p class="tool-desc">Paste an IAM policy document and get the over-permission patterns a review would flag — wildcard <code>Action</code>/<code>Resource</code>, <code>NotAction</code> inversion, sensitive actions with no <code>Condition</code>, wildcard <code>Principal</code>. Runs entirely in your browser; no credentials, nothing uploaded.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="iampolicy-input">IAM policy JSON</label>
+        <textarea id="iampolicy-input" spellcheck="false" placeholder='{"Version":"2012-10-17","Statement":[...]}'>{"Version":"2012-10-17","Statement":[{"Sid":"Deploy","Effect":"Allow","Action":["s3:*","iam:PassRole"],"Resource":"*"}]}</textarea>
+        <button id="iampolicy-check-btn" class="primary-btn">Analyze</button>
+      </div>
+      <div class="io-col">
+        <label>Findings</label>
+        <div id="iampolicy-result" class="result-box result-idle">Paste a policy and click "Analyze".</div>
+      </div>
+    </div>
+  <h2>How an IAM policy is structured</h2>
+  <p>A policy document is a list of statements, each granting or denying specific actions on specific resources, optionally under conditions.</p>
+  <ul>
+    <li><strong>Effect</strong> — <code>Allow</code> or <code>Deny</code>.</li>
+    <li><strong>Action</strong> — the API operations, such as <code>s3:GetObject</code>.</li>
+    <li><strong>Resource</strong> — the ARNs the statement applies to.</li>
+    <li><strong>Condition</strong> — extra constraints, such as a source IP range or a required tag.</li>
+    <li><strong>Principal</strong> — who is being granted access, in resource-based policies only.</li>
+  </ul>
+
+  <h3>How a request is decided</h3>
+  <p>Access is denied by default. An explicit <code>Allow</code> anywhere grants it, and an explicit <code>Deny</code> anywhere overrides every allow. That ordering is absolute: no amount of allowing can override a deny.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Explicit deny always wins</h3>
+  <p>If a permission is not working and the policy clearly grants it, something else is denying it — a permission boundary, a service control policy at the organisation level, a session policy, or another statement in the same document. Looking only at the policy that grants is why these take hours to debug.</p>
+
+  <h3>Some actions ignore Resource</h3>
+  <p>A number of list and describe operations do not act on a specific resource, so they only work with <code>"Resource": "*"</code>. Writing a tightly scoped ARN for them produces a policy that looks correct and denies everything. The service documentation's resource-level permissions table is the authority on which actions support scoping.</p>
+
+  <h3>Bucket and object ARNs are different</h3>
+  <p><code>arn:aws:s3:::my-bucket</code> is the bucket; <code>arn:aws:s3:::my-bucket/*</code> is its contents. <code>ListBucket</code> needs the first, <code>GetObject</code> needs the second, and a policy with only one of them fails in a way that reads like a credentials problem. Most working S3 policies list both.</p>
+
+  <h3>Wildcards expand with the provider</h3>
+  <p><code>s3:*</code> grants permissions that did not exist when the policy was written, including future destructive ones. The same is true of <code>iam:*</code>, which is effectively administrative access — anything that can modify IAM can grant itself everything else. Enumerate the actions you need.</p>
+
+  <h3><code>NotAction</code> and <code>NotResource</code> are rarely what you want</h3>
+  <p>They mean "everything except", which grows silently as the provider adds services. A policy using <code>NotAction</code> with <code>Allow</code> is granting every future API too. Reserve them for deny statements, where the inversion fails safe.</p>
+
+  <h3>Trust policies are the other half</h3>
+  <p>For a role, the permission policy says what it can do and the trust policy says who may assume it. An overly broad trust policy — a wildcard principal, or a missing external ID on a cross-account role — matters more than the permissions, because it decides who gets them.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="tf.html">TF Plan Formatter</a></li><li><a href="secretscanner.html">Secret Scanner</a></li><li><a href="jwt.html">JWT Decoder</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-semver">
+    <div class="panel-header"><h1>Version Constraint Checker</h1><button class="clear-btn" data-clear="semver">Clear</button></div>
+    <p class="tool-desc">Check which versions actually satisfy a constraint. Handles npm semver (<code>^</code>, <code>~</code>, ranges) <em>and</em> Terraform’s pessimistic <code>~&gt;</code>, which is not the same as npm’s tilde — <code>~&gt; 1.5</code> allows 1.6 but <code>~&gt; 1.5.0</code> does not.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="semver-constraint">Constraint (e.g. <code>~&gt; 1.5</code>, <code>^1.2.3</code>, <code>&gt;=1.0 &lt;2.0</code>)</label>
+        <input type="text" id="semver-constraint" spellcheck="false" placeholder="~> 1.5" value="~> 1.5">
+        <label for="semver-versions">Versions to test (space, comma or newline separated)</label>
+        <textarea id="semver-versions" spellcheck="false" placeholder="1.4.0 1.5.0 1.6.3 2.0.0">1.4.0 1.5.0 1.5.9 1.6.3 2.0.0</textarea>
+        <button id="semver-check-btn" class="primary-btn">Check</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="semver-result" class="result-box result-idle">Enter a constraint and click "Check".</div>
+      </div>
+    </div>
+  <h2>How semantic versioning works</h2>
+  <p>A semver version is <code>MAJOR.MINOR.PATCH</code>, and each part has a defined meaning: increment MAJOR for a breaking change, MINOR for backwards-compatible features, PATCH for backwards-compatible fixes. The value of the scheme is entirely in that promise — it lets a dependency manager decide what is safe to upgrade automatically.</p>
+
+  <h3>Constraint operators</h3>
+  <ul>
+    <li><code>1.2.3</code> — exactly this version.</li>
+    <li><code>^1.2.3</code> — compatible with 1.2.3: allows MINOR and PATCH, so up to but excluding 2.0.0.</li>
+    <li><code>~1.2.3</code> — allows PATCH only, so up to but excluding 1.3.0.</li>
+    <li><code>&gt;=1.2.3 &lt;2.0.0</code> — the explicit form of a caret range.</li>
+    <li><code>*</code> or <code>latest</code> — anything, which is rarely what you want in a lockfile-less project.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Caret behaves differently below 1.0.0</h3>
+  <p>This surprises nearly everyone. For <code>^1.2.3</code> the caret allows minor upgrades, but for <code>^0.2.3</code> it allows only patch upgrades — up to but excluding 0.3.0. The reasoning is that pre-1.0 projects signal breaking changes with the minor number, and the rule bakes that convention in. So the same operator is permissive on a stable package and strict on an unstable one.</p>
+
+  <h3>Pre-release versions sort below the release</h3>
+  <p><code>1.0.0-alpha</code> is <em>older</em> than <code>1.0.0</code>, not newer, and pre-release identifiers compare field by field: <code>1.0.0-alpha</code> &lt; <code>1.0.0-alpha.1</code> &lt; <code>1.0.0-beta</code> &lt; <code>1.0.0-rc.1</code> &lt; <code>1.0.0</code>. Numeric identifiers compare numerically, so <code>alpha.2</code> precedes <code>alpha.10</code> — unlike plain string sorting, which gets that backwards.</p>
+
+  <h3>Ranges do not match pre-releases by default</h3>
+  <p><code>^1.2.3</code> will not install <code>2.0.0-beta.1</code>, and usually will not pick up <code>1.3.0-rc.1</code> either, because a range only considers pre-releases when the constraint itself names one. This is deliberate and usually right, but it means "why isn't it upgrading?" often has the answer "because the only newer version is a pre-release".</p>
+
+  <h3>Build metadata is ignored in comparisons</h3>
+  <p>Anything after a <code>+</code>, such as <code>1.0.0+build.42</code>, has no effect on precedence — two versions differing only in build metadata are the same version as far as ordering is concerned. Using it to distinguish releases does not work.</p>
+
+  <h3>The promise is a convention, not a guarantee</h3>
+  <p>Nothing enforces that a minor release is actually backwards compatible, and plenty of breakage arrives in patch versions. This is why lockfiles exist: the range expresses intent, the lockfile pins reality. A project with permissive ranges and no committed lockfile is one upstream mistake away from an unreproducible build.</p>
+
+  <h3>Leading <code>v</code> is not part of the version</h3>
+  <p><code>v1.2.3</code> is a common tag style, but the version itself is <code>1.2.3</code>. Some parsers strip it and some reject it, so comparing a git tag against a manifest version without normalising first is a reliable source of off-by-one-character bugs.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="tf.html">TF Plan Formatter</a></li><li><a href="iampolicy.html">IAM Policy Analyzer</a></li><li><a href="k8squantity.html">K8s Quantity Converter</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-jwt">
+    <div class="panel-header"><h1>JWT Decoder</h1><button class="clear-btn" data-clear="jwt">Clear</button></div>
+    <p class="tool-desc">Paste a JWT and see its header and payload decoded, with expiry shown as a real date. Signature is not verified — this is a read-only decoder.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="jwt-input">JWT</label>
+        <textarea id="jwt-input" spellcheck="false" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
+        <button id="jwt-decode-btn" class="primary-btn">Decode</button>
+      </div>
+      <div class="io-col">
+        <label>Decoded</label>
+        <pre id="jwt-result" class="result-box result-idle tf-output">Paste a JWT and click "Decode".</pre>
+      </div>
+    </div>
+  <h2>What a JWT actually contains</h2>
+  <p>A JSON Web Token is three base64url-encoded segments joined by dots: <code>header.payload.signature</code>. The header says which algorithm signed it, the payload carries the claims, and the signature is what makes the first two trustworthy.</p>
+  <p>The important consequence of that structure: the payload is <em>encoded</em>, not encrypted. Anyone holding the token can read every claim in it without any key at all — which is exactly what this decoder does, entirely in your browser.</p>
+
+  <h3>Standard claims</h3>
+  <ul>
+    <li><code>iss</code> — issuer, who minted the token.</li>
+    <li><code>sub</code> — subject, usually the user id.</li>
+    <li><code>aud</code> — audience, who the token is intended for.</li>
+    <li><code>exp</code> — expiry, as a Unix timestamp in seconds.</li>
+    <li><code>nbf</code> — not valid before this time.</li>
+    <li><code>iat</code> — when it was issued.</li>
+    <li><code>jti</code> — a unique id, used to revoke or de-duplicate.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Decoding is not verifying</h3>
+  <p>This is the mistake that matters. Reading the claims out of a token tells you what it says, not whether it is genuine. Anyone can craft a token with <code>"admin": true</code> in the payload. Only checking the signature against the issuer's key proves the token was issued by whom it claims and has not been altered since. Never make an authorisation decision from a decoded payload alone.</p>
+
+  <h3><code>alg: none</code> and algorithm confusion</h3>
+  <p>The header is attacker-controlled, so a library that trusts it can be told how to verify. Two classic attacks follow: setting <code>alg</code> to <code>none</code> so verification is skipped entirely, and switching an RS256 token to HS256 so the library uses the <em>public</em> key as an HMAC secret — a key the attacker already has. Pin the expected algorithm in your verification code rather than reading it from the token.</p>
+
+  <h3>Put nothing secret in the payload</h3>
+  <p>Because it is readable by anyone who holds the token, the payload is the wrong place for anything sensitive — no personal data beyond what is necessary, no internal identifiers you would not publish, and certainly no credentials. A token often ends up in browser storage, server logs and error reports.</p>
+
+  <h3>Expiry is in seconds, and clocks drift</h3>
+  <p><code>exp</code>, <code>nbf</code> and <code>iat</code> are Unix timestamps in <em>seconds</em>, while many languages produce milliseconds by default. A token minted with a millisecond value will appear to expire tens of thousands of years from now. Verification should also allow a small clock-skew tolerance between the issuing and validating machines.</p>
+
+  <h3>Revocation is the hard part</h3>
+  <p>A signed token stays valid until it expires — there is no built-in way to withdraw one, because verification is deliberately offline. If you need to be able to log someone out immediately, you need short expiry times plus refresh tokens, or a server-side denylist keyed on <code>jti</code>. Choosing long-lived tokens because it is convenient is choosing not to be able to revoke access.</p>
+
+  <h3>base64url is not base64</h3>
+  <p>JWT segments use the URL-safe alphabet: <code>-</code> and <code>_</code> instead of <code>+</code> and <code>/</code>, and the trailing <code>=</code> padding is stripped. A plain base64 decoder will often fail or produce garbage on a token, which is a common source of confusion when decoding one by hand.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="chmod.html">chmod Calculator</a></li><li><a href="secretscanner.html">Secret Scanner</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-chmod">
+    <div class="panel-header"><h1>chmod Calculator</h1><button class="clear-btn" data-clear="chmod">Clear</button></div>
+    <p class="tool-desc">Convert between symbolic (<code>rwxr-xr--</code>) and octal (<code>754</code>) permission notation, in both directions.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="chmod-symbolic">Symbolic (e.g. rwxr-xr--)</label>
+        <input type="text" id="chmod-symbolic" spellcheck="false" placeholder="rwxr-xr--" value="rwxr-xr--">
+        <button id="chmod-to-octal-btn" class="primary-btn">Convert to Octal</button>
+      </div>
+      <div class="io-col">
+        <label for="chmod-octal">Octal (e.g. 754)</label>
+        <input type="text" id="chmod-octal" spellcheck="false" placeholder="754">
+        <button id="chmod-to-symbolic-btn" class="primary-btn">Convert to Symbolic</button>
+      </div>
+    </div>
+    <label style="margin-top:16px;">Result</label>
+    <div id="chmod-result" class="result-box result-idle">Use either field above.</div>
+  <h2>How Unix permissions work</h2>
+  <p>Every file and directory carries three permission sets: one for the owning user, one for the owning group, and one for everyone else. Each set has three bits — read, write and execute — which is why permissions are usually written as three octal digits.</p>
+  <ul>
+    <li><code>4</code> — read (<code>r</code>)</li>
+    <li><code>2</code> — write (<code>w</code>)</li>
+    <li><code>1</code> — execute (<code>x</code>)</li>
+  </ul>
+  <p>Add them together per triad. <code>7</code> is read, write and execute; <code>6</code> is read and write; <code>5</code> is read and execute. So <code>755</code> means the owner can do everything while group and others can read and execute, and <code>644</code> means the owner can read and write while everyone else can only read.</p>
+
+  <h3>The common values</h3>
+  <ul>
+    <li><code>644</code> — ordinary files: owner edits, everyone reads.</li>
+    <li><code>755</code> — directories, and scripts meant to be run by anyone.</li>
+    <li><code>600</code> — private files such as credentials. SSH requires this for private keys.</li>
+    <li><code>700</code> — a private directory only the owner may enter.</li>
+    <li><code>775</code> — a shared directory for a team, writable by the group.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>On a directory, execute means "enter", not "run"</h3>
+  <p>The <code>x</code> bit on a directory controls whether you may traverse into it and reach what is inside. Read without execute lets you list the names in a directory but not open anything within it; execute without read lets you open a file whose exact path you already know, but not list the contents. This is why <code>755</code> is normal for a directory even though nothing in it is a program.</p>
+
+  <h3><code>chmod -R 755</code> makes every file executable</h3>
+  <p>Recursive chmod applies the same mode to directories and regular files alike, so a whole tree of documents ends up marked executable. The usual fix is to treat the two separately:</p>
+  <p><code>find . -type d -exec chmod 755 {} +</code> and <code>find . -type f -exec chmod 644 {} +</code></p>
+  <p>Alternatively, symbolic mode with a capital <code>X</code> — <code>chmod -R a+rX .</code> — sets execute only on directories and on files that already had it.</p>
+
+  <h3>umask subtracts, it does not set</h3>
+  <p>New files are not created with the mode you might expect; the umask masks bits out of the system default. With the common umask of <code>022</code>, a new file lands at <code>644</code> and a new directory at <code>755</code>. If files are appearing with unexpectedly open or closed permissions, the umask of the creating process is usually the reason rather than anything chmod did.</p>
+
+  <h3>The special bits</h3>
+  <p>A fourth leading digit sets setuid (<code>4</code>), setgid (<code>2</code>) and the sticky bit (<code>1</code>). Setgid on a directory is the genuinely useful one: new files inside inherit the directory's group, which is what makes shared team directories work. The sticky bit is why <code>/tmp</code> is world-writable yet users cannot delete each other's files. Setuid on an executable runs it as the file's owner and deserves real caution.</p>
+
+  <h3>Permissions are not ownership</h3>
+  <p>chmod changes what the owner, group and others may do; it never changes who the owner or group <em>is</em>. If the right answer is "this should belong to a different user", that is <code>chown</code>. Granting <code>777</code> to work around an ownership problem is the reflex worth resisting — it makes the file writable by every account on the system, including any service that gets compromised.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="jwt.html">JWT Decoder</a></li><li><a href="secretscanner.html">Secret Scanner</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-secretscanner">
+    <div class="panel-header"><h1>Secret Scanner</h1><button class="clear-btn" data-clear="secretscanner">Clear</button></div>
+    <p class="tool-desc">Paste code, config, or logs and scan for accidentally-committed secrets (AWS keys, GitHub tokens, private key blocks, generic API keys, Slack tokens). Runs entirely in your browser — nothing is uploaded.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="secretscanner-input">Text to scan</label>
+        <textarea id="secretscanner-input" spellcheck="false" placeholder="Paste code, .env contents, or logs here"></textarea>
+        <button id="secretscanner-scan-btn" class="primary-btn">Scan</button>
+      </div>
+      <div class="io-col">
+        <label>Findings</label>
+        <div id="secretscanner-result" class="result-box result-idle">Paste some text and click "Scan".</div>
+      </div>
+    </div>
+  <h2>What a leaked secret looks like</h2>
+  <p>Scanners find credentials two ways. Some have recognisable shapes — AWS access keys start <code>AKIA</code>, GitHub tokens start <code>ghp_</code>, Slack tokens <code>xox</code>, private keys carry a <code>-----BEGIN</code> header. Everything else is caught by entropy: a long random-looking string assigned to a variable called <code>token</code>, <code>secret</code> or <code>password</code> is probably exactly that.</p>
+  <p>The usual places things leak are predictable: committed <code>.env</code> files, hardcoded fallbacks in config, connection strings with the password inline, test fixtures using real credentials, and CI definitions where someone pasted a value instead of referencing a secret store.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Deleting the file does not fix the leak</h3>
+  <p>This is the one that matters most. Once a credential has been pushed to a repository that others can read, it must be treated as compromised — removing it in a later commit changes nothing, because the old commit is still in the history, in every clone, and in any fork or cached view. <strong>Rotation is the fix.</strong> Revoke the credential and issue a new one; cleaning the repository is housekeeping done afterwards.</p>
+
+  <h3>Rewriting history does not undo exposure either</h3>
+  <p>Tools that purge a secret from every commit are useful for stopping future readers, but they cannot reach clones that already exist, forks, or anything that scraped the repository in the meantime. Automated scanners watch public pushes continuously and act within minutes. Assume anything public was collected.</p>
+
+  <h3>Private repositories are not safe storage</h3>
+  <p>A private repository can be made public by accident, shared with a contractor, backed up somewhere less controlled, or cloned onto a laptop that leaves the company. "Private" reduces who can read a credential today; it does not make the repository an appropriate place to keep one.</p>
+
+  <h3>Scan before the commit, not after</h3>
+  <p>A pre-commit hook that rejects a credential costs seconds; the same credential found after a push costs a rotation and an incident note. CI scanning is a useful backstop but it runs after the secret is already in the history.</p>
+
+  <h3>False positives train people to ignore the tool</h3>
+  <p>Example keys in documentation, test fixtures and high-entropy hashes all trip entropy rules. A scanner that cries wolf gets bypassed with <code>--no-verify</code> within a week, which is worse than not having it. Tune the rules and allowlist known-safe patterns deliberately.</p>
+
+  <h3>The real fix is not having the secret there at all</h3>
+  <p>Scanning is a safety net under a process problem. Credentials belong in a secret manager, injected at runtime, with short lifetimes and automatic rotation. Short-lived tokens issued through OIDC — so CI never holds a long-lived key at all — remove the entire category rather than detecting it.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="jwt.html">JWT Decoder</a></li><li><a href="chmod.html">chmod Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-tlsdecoder">
+    <div class="panel-header"><h1>TLS Certificate Decoder</h1><button class="clear-btn" data-clear="tlsdecoder">Clear</button></div>
+    <p class="tool-desc">Paste a PEM-encoded X.509 certificate (<code>-----BEGIN CERTIFICATE-----</code>) and see its subject, issuer, validity dates, and serial number. Parsed entirely in your browser with no server round-trip.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="tlsdecoder-input">PEM certificate</label>
+        <textarea id="tlsdecoder-input" spellcheck="false" placeholder="-----BEGIN CERTIFICATE-----&#10;MIIC...&#10;-----END CERTIFICATE-----"></textarea>
+        <button id="tlsdecoder-decode-btn" class="primary-btn">Decode</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <pre id="tlsdecoder-result" class="result-box result-idle tf-output">Paste a PEM certificate and click "Decode".</pre>
+      </div>
+    </div>
+  <h2>What is inside a certificate</h2>
+  <p>An X.509 certificate binds a public key to one or more names, signed by a certificate authority. The fields that matter day to day:</p>
+  <ul>
+    <li><strong>Subject</strong> — who the certificate is for. The <code>CN</code> within it is the legacy name field.</li>
+    <li><strong>Subject Alternative Name</strong> — the list of hostnames the certificate is actually valid for.</li>
+    <li><strong>Issuer</strong> — which CA signed it. For a chain to validate, this must match the subject of the next certificate up.</li>
+    <li><strong>Not Before / Not After</strong> — the validity window.</li>
+    <li><strong>Key Usage / Extended Key Usage</strong> — what the certificate may be used for, such as server authentication.</li>
+    <li><strong>Serial number and fingerprint</strong> — identifiers for pinning and revocation.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>CN is ignored by modern clients</h3>
+  <p>Browsers stopped honouring Common Name for hostname matching years ago; only the Subject Alternative Name list counts. A certificate whose CN is right but whose SAN omits the hostname will fail validation with an error that looks nonsensical if you are reading the CN. Check the SAN first, always.</p>
+
+  <h3>A missing intermediate is the classic failure</h3>
+  <p>A server must send its own certificate <em>and</em> any intermediates, in order, so the client can build a path to a trusted root. Omitting the intermediate frequently still works in a browser, because browsers cache intermediates from previous sites — and then fails in curl, in a JVM, or on a mobile device that has no such cache. "It works in Chrome but not from the server" is nearly always this.</p>
+
+  <h3>Chain order matters</h3>
+  <p>The leaf certificate comes first, then each issuer in turn, and the root is optional because the client already has it. A bundle assembled in the wrong order is rejected by stricter stacks even though every certificate in it is valid.</p>
+
+  <h3>Wildcards cover exactly one label</h3>
+  <p><code>*.example.com</code> matches <code>api.example.com</code> but not <code>a.b.example.com</code>, and not the bare <code>example.com</code> either. A wildcard certificate that needs to serve the apex domain must list it separately in the SAN.</p>
+
+  <h3>Expiry is the outage you can predict</h3>
+  <p>Certificates are the rare failure with a known date, and they still cause outages because nobody is watching the one on an internal load balancer or a message broker. Monitor expiry as a metric with alerting weeks ahead, rather than relying on a renewal reminder reaching a person who still works there. Automated renewal is better again — but then monitor that the renewal actually happened.</p>
+
+  <h3>The clock is part of validation</h3>
+  <p>A device whose time is wrong will reject perfectly good certificates as not-yet-valid or expired. On embedded hardware and freshly imaged machines without NTP, this presents as an inexplicable TLS failure that resolves itself once the clock syncs.</p>
+
+  <h3>PEM and DER are the same data</h3>
+  <p>PEM is base64 with <code>-----BEGIN CERTIFICATE-----</code> markers; DER is the raw binary. Tools disagree about which they accept, and a <code>.crt</code> file may be either. Converting between them changes nothing about the certificate itself.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="jwt.html">JWT Decoder</a></li><li><a href="chmod.html">chmod Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-regex">
+    <div class="panel-header"><h1>Regex Tester</h1><button class="clear-btn" data-clear="regex">Clear</button></div>
+    <p class="tool-desc">Test a regular expression against sample text and see matches highlighted.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="regex-pattern">Pattern</label>
+        <input type="text" id="regex-pattern" spellcheck="false" placeholder="^[a-z0-9]+$" value="[a-z]+@[a-z]+\.[a-z]+">
+        <label for="regex-flags" class="second-label">Flags</label>
+        <input type="text" id="regex-flags" spellcheck="false" placeholder="gi" value="gi">
+        <label for="regex-text" class="second-label">Sample text</label>
+        <textarea id="regex-text" spellcheck="false" placeholder="Paste sample text here">Contact us at hello@example.com or support@example.org.</textarea>
+        <button id="regex-test-btn" class="primary-btn">Test</button>
+      </div>
+      <div class="io-col">
+        <label>Matches</label>
+        <div id="regex-result" class="result-box result-idle">Enter a pattern and text, then click "Test".</div>
+      </div>
+    </div>
+  <h2>Regex syntax reference</h2>
+  <p>A regular expression describes a pattern to match inside text. These are the pieces you reach for most often.</p>
+  <ul>
+    <li><code>.</code> — any character except a newline.</li>
+    <li><code>\d</code> <code>\w</code> <code>\s</code> — a digit, a word character, whitespace. Capitalised (<code>\D</code> <code>\W</code> <code>\S</code>) means the opposite.</li>
+    <li><code>[abc]</code> — any one of these; <code>[^abc]</code> — any one except these; <code>[a-z]</code> — a range.</li>
+    <li><code>*</code> <code>+</code> <code>?</code> — zero or more, one or more, zero or one.</li>
+    <li><code>{2,5}</code> — between two and five repetitions.</li>
+    <li><code>^</code> <code>$</code> — start and end of the string, or of a line with the multiline flag.</li>
+    <li><code>\b</code> — a word boundary, which is what makes <code>\bcat\b</code> skip "concatenate".</li>
+    <li><code>(...)</code> — a capturing group; <code>(?:...)</code> groups without capturing.</li>
+    <li><code>|</code> — alternation, matching either side.</li>
+  </ul>
+
+  <h3>Flags</h3>
+  <p><code>i</code> ignores case, <code>g</code> finds every match rather than the first, <code>m</code> makes <code>^</code> and <code>$</code> match at line boundaries, and <code>s</code> lets <code>.</code> match newlines too.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Quantifiers are greedy by default</h3>
+  <p>Given <code>&lt;b&gt;one&lt;/b&gt; and &lt;b&gt;two&lt;/b&gt;</code>, the pattern <code>&lt;b&gt;.*&lt;/b&gt;</code> matches the entire string, not the first tag pair — <code>.*</code> takes as much as it can and then backs off only enough to let the rest match. Adding <code>?</code> makes it lazy: <code>&lt;b&gt;.*?&lt;/b&gt;</code> stops at the first closing tag.</p>
+
+  <h3>Catastrophic backtracking is a real outage</h3>
+  <p>Nested quantifiers over overlapping character sets, such as <code>(a+)+b</code>, can make the engine try an exponential number of paths before giving up. On a long non-matching input that is seconds or minutes of pinned CPU, and if the pattern runs on user input it is a denial-of-service vector with its own name, ReDoS. Prefer specific character classes over <code>.*</code>, avoid a quantifier inside a quantified group, and apply a timeout where the platform offers one.</p>
+
+  <h3><code>.</code> does not match newlines</h3>
+  <p>By default a dot stops at a line break, so a pattern that works on single-line test input quietly fails on a multi-line document. The <code>s</code> flag (sometimes called "dotall") changes it. Note that <code>m</code> is a different flag doing a different job — it affects anchors, not the dot.</p>
+
+  <h3>Escaping happens twice in most languages</h3>
+  <p>A regex that works in a tester often breaks when pasted into code, because the string literal consumes one level of backslashes first. <code>\d</code> in a Java or JSON string has to be written <code>\\d</code>. Python raw strings (<code>r"\d"</code>) and JavaScript regex literals (<code>/\d/</code>) avoid this entirely, which is why they are worth using.</p>
+
+  <h3>Dialects genuinely differ</h3>
+  <p>Lookbehind is unsupported in some engines and fixed-width-only in others. POSIX tools are a bigger jump: basic <code>grep</code> and <code>sed</code> need backslashes before <code>+</code>, <code>?</code> and <code>(</code>, which is why <code>grep -E</code> exists. A pattern verified in a browser tester is verified for that engine, not universally.</p>
+
+  <h3>Do not parse HTML with it</h3>
+  <p>Regular expressions cannot describe arbitrarily nested structures, so a pattern over HTML, XML or JSON works on your sample and fails on real input containing a nested tag, an attribute with a bracket in it, or a comment. Extracting one simple value from predictable markup is fine; anything structural wants a parser.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="curl.html">cURL → Code</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-curl">
+    <div class="panel-header"><h1>cURL → Code Generator</h1><button class="clear-btn" data-clear="curl">Clear</button></div>
+    <p class="tool-desc">Paste a <code>curl</code> command and get equivalent code in JavaScript, Python, and PowerShell.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="curl-input">curl command</label>
+        <textarea id="curl-input" spellcheck="false" placeholder='curl -X POST "https://api.example.com/users" -H "Content-Type: application/json" -d "{\"name\": \"test\"}"'></textarea>
+        <button id="curl-convert-btn" class="primary-btn">Convert</button>
+      </div>
+      <div class="io-col">
+        <label>Generated code</label>
+        <pre id="curl-result" class="result-box result-idle tf-output">Paste a curl command and click "Convert".</pre>
+      </div>
+    </div>
+  <h2>The flags you actually use</h2>
+  <ul>
+    <li><code>-X POST</code> — set the HTTP method.</li>
+    <li><code>-H 'Header: value'</code> — add a request header; repeatable.</li>
+    <li><code>-d '{"k":"v"}'</code> — send a request body. Implies POST.</li>
+    <li><code>-o file</code> — write the body to a file; <code>-O</code> keeps the remote filename.</li>
+    <li><code>-L</code> — follow redirects.</li>
+    <li><code>-u user:pass</code> — HTTP basic auth.</li>
+    <li><code>-i</code> — include response headers in the output; <code>-I</code> sends HEAD and shows headers only.</li>
+    <li><code>-s</code> — silent, suppressing the progress meter; usually paired as <code>-sS</code> so errors still show.</li>
+    <li><code>-w '%{http_code}'</code> — print selected response metadata after the transfer.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3><code>-X POST</code> with <code>-d</code> is redundant, and sometimes harmful</h3>
+  <p><code>-d</code> already switches the method to POST. Forcing <code>-X</code> as well matters when a redirect is involved: curl normally changes the method to GET on a 301 or 302, but an explicit <code>-X</code> pins it, so the redirected request keeps POSTing to the new location. Omit <code>-X</code> unless you specifically need a method curl would not choose.</p>
+
+  <h3><code>-d</code> sets the wrong Content-Type for JSON</h3>
+  <p>It defaults to <code>application/x-www-form-urlencoded</code>, so an API expecting JSON may reject a body that looks perfectly valid. Always pair it: <code>-H 'Content-Type: application/json'</code>. Newer curl versions offer <code>--json</code> as shorthand for the body, the content type and the accept header together.</p>
+
+  <h3><code>-k</code> disables certificate verification entirely</h3>
+  <p>It is the standard reflex when a TLS error appears, and it turns off the protection that error exists to provide — including against interception. For a self-signed or internal CA, pass the CA bundle with <code>--cacert</code> instead. Reaching for <code>-k</code> in a script that handles anything sensitive is worth treating as a bug, not a workaround.</p>
+
+  <h3>Quoting bites on Windows</h3>
+  <p>A curl command copied from documentation usually uses single quotes, which <code>cmd.exe</code> does not treat as quotes at all. On Windows, use double quotes and escape the inner ones, or run the command in PowerShell with care — PowerShell also has its own parsing of <code>-d</code> and JSON braces. Pasting a Linux curl line into a Windows prompt unchanged is the most common reason it "doesn't work".</p>
+
+  <h3><code>-d</code> strips newlines, <code>--data-binary</code> does not</h3>
+  <p><code>-d</code> is line-oriented and removes newlines from a file passed with <code>-d @file</code>, which corrupts anything whitespace-sensitive — YAML, a binary payload, a signed blob. Use <code>--data-binary @file</code> when the body must arrive byte for byte.</p>
+
+  <h3>curl does not fail on HTTP errors by default</h3>
+  <p>A 500 response is still a successful transfer as far as the exit code is concerned, so a script checking only <code>$?</code> will sail past server errors. <code>-f</code> makes curl return a non-zero exit code on HTTP failures, which is what you usually want in automation.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="regex.html">Regex Tester</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-mermaid">
+    <div class="panel-header"><h1>Mermaid Diagram Preview</h1><button class="clear-btn" data-clear="mermaid">Clear</button></div>
+    <p class="tool-desc">Paste <a href="https://mermaid.js.org/" target="_blank" rel="nofollow">Mermaid</a> diagram syntax (flowcharts, sequence diagrams, etc.) and see it rendered live.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="mermaid-input">Mermaid syntax</label>
+        <textarea id="mermaid-input" spellcheck="false" placeholder="graph TD
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Deploy]
+  B -->|No| D[Fix]">graph TD
+  A[Start] --> B{Decision}
+  B -->|Yes| C[Deploy]
+  B -->|No| D[Fix]</textarea>
+        <button id="mermaid-render-btn" class="primary-btn">Render</button>
+      </div>
+      <div class="io-col">
+        <label>Preview</label>
+        <div id="mermaid-result" class="result-box result-idle" style="overflow:auto;">Paste Mermaid syntax and click "Render".</div>
+      </div>
+    </div>
+  <h2>Mermaid basics</h2>
+  <p>Mermaid turns text into diagrams, which means a diagram can live in version control next to the thing it describes and be reviewed in a pull request like any other change. That is its real advantage over a drawing tool.</p>
+  <ul>
+    <li><code>flowchart TD</code> — a flowchart, top-down. <code>LR</code> is left-to-right.</li>
+    <li><code>A --&gt; B</code> — an arrow; <code>A --&gt;|label| B</code> labels it.</li>
+    <li><code>A[Box]</code>, <code>A(Rounded)</code>, <code>A{Diamond}</code>, <code>A[(Database)]</code> — node shapes.</li>
+    <li><code>sequenceDiagram</code> — interactions over time, with <code>participant</code> and <code>A-&gt;&gt;B: message</code>.</li>
+    <li><code>subgraph name ... end</code> — grouping.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Punctuation in labels breaks the parse</h3>
+  <p>Parentheses, braces, commas and colons inside a node label are read as syntax. <code>A[Deploy (prod)]</code> fails; <code>A["Deploy (prod)"]</code> works. Quoting every label that contains anything but letters, numbers and spaces avoids a whole class of confusing errors — and the error messages point at a line number rather than at the real problem.</p>
+
+  <h3>Renderer versions differ a lot</h3>
+  <p>GitHub, GitLab, your IDE preview and a local CLI are frequently on different Mermaid versions. Newer diagram types and newer syntax render in one place and show as an error block in another. A diagram that looks right in your editor is not guaranteed to render where it will be read, so check it where it will actually live.</p>
+
+  <h3>Node IDs are not labels</h3>
+  <p><code>A[Login Service]</code> declares a node whose id is <code>A</code>. Reusing <code>A</code> later with different text silently redefines it, and referring to <code>Login Service</code> in an arrow does not work. Using meaningful ids (<code>login[Login Service]</code>) makes larger diagrams far easier to edit.</p>
+
+  <h3>Layout is automatic and only loosely controllable</h3>
+  <p>You describe relationships, not positions. Beyond direction and subgraphs, there is limited influence over where things land, and adding one node can rearrange the whole diagram. Fighting the layout engine on a complex diagram usually means the diagram is trying to show too much — splitting it is the better fix.</p>
+
+  <h3>Comments use <code>%%</code></h3>
+  <p>Not <code>#</code>, not <code>//</code>. The comment must be on its own line; a trailing comment after a statement is parsed as part of it.</p>
+
+  <h3>Theme and contrast are not guaranteed</h3>
+  <p>Default colours can be illegible against a dark background, which is a common complaint when a diagram renders fine locally and is unreadable on a site in dark mode. Setting the theme explicitly in the diagram's init block, rather than relying on the host's default, keeps it readable wherever it ends up.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="regex.html">Regex Tester</a></li><li><a href="curl.html">cURL → Code</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-restmock">
+    <div class="panel-header"><h1>REST Endpoint Mock Generator</h1><button class="clear-btn" data-clear="restmock">Clear</button></div>
+    <p class="tool-desc">Paste a sample JSON response and get a ready-to-run Express.js mock server for that endpoint.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="restmock-method">Method</label>
+        <select id="restmock-method">
+          <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option><option>PATCH</option>
+        </select>
+        <label class="second-label">Path</label>
+        <input type="text" id="restmock-path" spellcheck="false" placeholder="/api/users/:id" value="/api/users/:id">
+        <label class="second-label">Sample JSON response</label>
+        <textarea id="restmock-json" spellcheck="false" placeholder='{"id": 1, "name": "Bob"}'>{"id": 1, "name": "Bob"}</textarea>
+        <button id="restmock-generate-btn" class="primary-btn">Generate</button>
+      </div>
+      <div class="io-col">
+        <label>Express.js mock server</label>
+        <pre id="restmock-result" class="result-box result-idle tf-output">Fill in the fields and click "Generate".</pre>
+      </div>
+    </div>
+  <h2>What a mock endpoint is for</h2>
+  <p>A mock returns a canned response so you can build and test against an API that is unfinished, rate limited, expensive to call, or simply someone else's. It decouples your progress from theirs, and makes tests fast and deterministic.</p>
+  <p>The useful mock is not just a happy-path body. It covers the error cases you will actually have to handle: a 401, a 429 with a <code>Retry-After</code>, a 500, a timeout, and a malformed response.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Mocks drift from the real API</h3>
+  <p>This is the central risk. A mock written from documentation six months ago keeps passing while the real endpoint has added a required field, changed a type, or started returning errors differently. The test suite stays green and the integration is broken. Mocks need to be regenerated from the real response, or validated against a shared schema, or the confidence they give is false.</p>
+
+  <h3>A green test against a mock proves very little</h3>
+  <p>It proves your code handles the response you wrote. Contract testing — where the consumer's expectations are verified against the actual provider — is what closes that gap. Mocks are for development speed; they are not a substitute for integrating at least once against the real thing.</p>
+
+  <h3>Status codes carry semantics worth mocking</h3>
+  <p>Returning 200 with an error body for every failure trains your code not to check status at all. Mock a 404 that means "not found" distinctly from a 400 that means "your request was wrong", and a 429 with the retry header, because retry logic that has never been exercised against a real 429 is retry logic that does not work.</p>
+
+  <h3>Everything is instant, and production is not</h3>
+  <p>A mock answering in a millisecond hides every timeout bug, every missing cancellation, and every assumption that a call is cheap enough to make inside a loop. Adding deliberate latency, and occasionally a hang, is how you find those before a user does.</p>
+
+  <h3>Do not mock what you do not own badly</h3>
+  <p>A hand-written guess at a third-party payload is worse than no mock, because it encodes a misunderstanding as a passing test. Capture a real response once and use that as the fixture.</p>
+
+  <h3>Mock servers leak into production configuration</h3>
+  <p>A base URL pointing at a mock, left in a config file or a default value, is a genuinely common incident. Keep the mock endpoint out of any shared default, and make the absence of a real URL a hard failure rather than something that quietly falls back.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="regex.html">Regex Tester</a></li><li><a href="curl.html">cURL → Code</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-envparser">
+    <div class="panel-header"><h1>.env File Validator</h1><button class="clear-btn" data-clear="envparser">Clear</button></div>
+    <p class="tool-desc">Paste a <code>.env</code> file and check for duplicate keys, empty values, and malformed lines.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="envparser-input">.env contents</label>
+        <textarea id="envparser-input" spellcheck="false" placeholder="DB_HOST=localhost
+DB_PORT=5432">DB_HOST=localhost
+DB_PORT=5432
+DB_HOST=127.0.0.1
+API_KEY=
+# a comment
+NOT_A_VALID_LINE</textarea>
+        <button id="envparser-check-btn" class="primary-btn">Validate</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="envparser-result" class="result-box result-idle">Paste a .env file and click "Validate".</div>
+      </div>
+    </div>
+  <h2>What a .env file is</h2>
+  <p>A <code>.env</code> file is a list of <code>KEY=value</code> lines loaded into the environment at startup. It is the standard way to keep configuration out of code — and the format is less standardised than it looks.</p>
+  <ul>
+    <li>One assignment per line, no spaces around <code>=</code>.</li>
+    <li>Keys conventionally uppercase with underscores.</li>
+    <li><code>#</code> starts a comment.</li>
+    <li>Blank lines are ignored.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>There is no specification</h3>
+  <p>Every loader implements its own dialect. Whether <code>export</code> prefixes are allowed, whether <code>${OTHER}</code> is interpolated, how multi-line values and escapes work — all of it varies between the Python, Node, Ruby and Go implementations, and between Docker Compose and your application. A file that works locally can parse differently in the container, which is a genuinely confusing class of bug.</p>
+
+  <h3>Docker Compose does not expand variables the way a shell does</h3>
+  <p>An <code>env_file</code> is read literally: quotes become part of the value and <code>$VAR</code> is not interpolated. So <code>PASSWORD="secret"</code> yields a password including the quote marks. Compose also uses <code>.env</code> in the project directory for substitution in the compose file itself, which is a different mechanism from <code>env_file</code> — two things with the same name doing different jobs.</p>
+
+  <h3>Spaces around the equals sign break it</h3>
+  <p><code>KEY = value</code> often produces a key with a trailing space, a value with a leading one, or nothing at all. Similarly, a trailing space after a value is invisible in an editor and included in the value — a frequent cause of a token that looks correct and is rejected.</p>
+
+  <h3>Everything is a string</h3>
+  <p>There are no types. <code>DEBUG=false</code> arrives as the string <code>"false"</code>, which is truthy in most languages. Parsing booleans and numbers explicitly, rather than relying on the value looking right, avoids a whole family of config bugs.</p>
+
+  <h3>Precedence surprises people</h3>
+  <p>Most loaders do not overwrite a variable already present in the real environment, so a stale shell export silently wins over the file you just edited. When a change to <code>.env</code> appears to have no effect, check whether the variable is already set in the environment.</p>
+
+  <h3>Never commit it</h3>
+  <p>A <code>.env</code> file holding real credentials in a repository is one of the most common leak sources there is. Add it to <code>.gitignore</code> on day one and commit a <code>.env.example</code> with the keys and dummy values instead — that documents what is required without publishing anything, and gives new developers a working template.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="regex.html">Regex Tester</a></li><li><a href="curl.html">cURL → Code</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-nginxfmt">
+    <div class="panel-header"><h1>Nginx Config Formatter</h1><button class="clear-btn" data-clear="nginxfmt">Clear</button></div>
+    <p class="tool-desc">Paste a minified or messy nginx config block and get it indented by brace depth.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="nginxfmt-input">Nginx config</label>
+        <textarea id="nginxfmt-input" spellcheck="false" placeholder="server { listen 80; location / { proxy_pass http://backend; } }">server { listen 80; server_name example.com; location / { proxy_pass http://backend; } }</textarea>
+        <button id="nginxfmt-format-btn" class="primary-btn">Format</button>
+      </div>
+      <div class="io-col">
+        <label>Formatted</label>
+        <pre id="nginxfmt-result" class="result-box result-idle tf-output">Paste an nginx config and click "Format".</pre>
+      </div>
+    </div>
+  <h2>How an nginx config is organised</h2>
+  <p>Configuration nests in blocks, and a directive's meaning depends on which block it sits in. The usual hierarchy is <code>http</code> → <code>server</code> → <code>location</code>, with most directives inherited downward and overridable at each level.</p>
+  <ul>
+    <li><code>server</code> — one virtual host, selected by <code>listen</code> and <code>server_name</code>.</li>
+    <li><code>location</code> — a URI path rule inside a server.</li>
+    <li><code>upstream</code> — a named pool of backends for proxying.</li>
+    <li>Every directive ends with a semicolon; blocks use braces.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Location matching is not top to bottom</h3>
+  <p>This is the big one. nginx does not take the first matching location — it applies a precedence order: exact matches (<code>=</code>) first, then the longest matching literal prefix, then regular expressions in file order, then the longest prefix as a fallback. A regex location placed below a prefix one can still win. Reordering the file to fix routing usually means the precedence rules are being misread.</p>
+
+  <h3><code>root</code> and <code>alias</code> treat the trailing slash differently</h3>
+  <p><code>root</code> appends the full request URI to the path; <code>alias</code> replaces the matched location prefix. A missing or extra trailing slash on an <code>alias</code> produces a path with a duplicated or missing segment, giving a 404 for a file that plainly exists. When a static file will not serve, this is the first thing to check.</p>
+
+  <h3><code>if</code> is best avoided</h3>
+  <p>Inside a location block, <code>if</code> behaves unlike a normal conditional and can produce surprising results when combined with other directives — the nginx documentation itself warns about it. Most uses can be replaced with a more specific location, a <code>map</code>, or <code>try_files</code>.</p>
+
+  <h3>Test before reloading</h3>
+  <p><code>nginx -t</code> validates syntax and the existence of referenced files. A reload with a broken config leaves the old workers running, so the site stays up but your change silently did not apply — which is worse than a visible failure, because it looks like the change did not work rather than that it never loaded.</p>
+
+  <h3>Reload, do not restart</h3>
+  <p><code>nginx -s reload</code> starts new workers with the new config and lets existing connections drain. A restart drops them. For a config change there is no reason to restart.</p>
+
+  <h3>Proxying loses the original client details</h3>
+  <p>Without explicit <code>proxy_set_header</code> lines, the backend sees nginx as the client: the real IP, the original host and the scheme are all lost, which breaks redirect generation and logging. Setting <code>Host</code>, <code>X-Real-IP</code>, <code>X-Forwarded-For</code> and <code>X-Forwarded-Proto</code> is part of any proxy block — and the backend must be configured to trust them only from nginx, or they become spoofable.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="regex.html">Regex Tester</a></li><li><a href="curl.html">cURL → Code</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-cron">
+    <div class="panel-header"><h1>Cron Expression Explainer</h1><button class="clear-btn" data-clear="cron">Clear</button></div>
+    <p class="tool-desc">Paste a 5-field cron expression and get a plain-English explanation of when it actually runs.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="cron-input">Cron expression</label>
+        <input type="text" id="cron-input" spellcheck="false" placeholder="30 6 * * 1,4" value="30 6 * * 1,4">
+        <button id="cron-explain-btn" class="primary-btn">Explain</button>
+      </div>
+      <div class="io-col">
+        <label>Plain English</label>
+        <div id="cron-result" class="result-box result-idle">Enter a cron expression and click "Explain".</div>
+      </div>
+    </div>
+    <div class="cron-ref">
+      <strong>Field order:</strong> <code>minute hour day-of-month month day-of-week</code>
+    </div>
+
+    <h2>Cron syntax reference</h2>
+    <p>A standard crontab line has five time fields followed by the command to run. Each field accepts a single value, a list, a range, or a step.</p>
+    <ul>
+      <li><code>minute</code> — 0–59</li>
+      <li><code>hour</code> — 0–23, on a 24-hour clock</li>
+      <li><code>day-of-month</code> — 1–31</li>
+      <li><code>month</code> — 1–12, or <code>JAN</code>–<code>DEC</code></li>
+      <li><code>day-of-week</code> — 0–7, or <code>SUN</code>–<code>SAT</code>. Both 0 and 7 mean Sunday.</li>
+    </ul>
+
+    <h3>Special characters</h3>
+    <ul>
+      <li><code>*</code> — every value in the field.</li>
+      <li><code>,</code> — a list, as in <code>1,15,30</code>.</li>
+      <li><code>-</code> — an inclusive range, as in <code>9-17</code>.</li>
+      <li><code>/</code> — a step. <code>*/15</code> in the minute field means every 15 minutes. A step can follow a range too: <code>0-30/10</code> runs at 0, 10, 20 and 30 only.</li>
+    </ul>
+
+    <h3>Shorthand aliases</h3>
+    <p>Most cron implementations accept these in place of all five fields: <code>@yearly</code> (equivalent to <code>0 0 1 1 *</code>), <code>@monthly</code>, <code>@weekly</code>, <code>@daily</code>, <code>@hourly</code>, and <code>@reboot</code>.</p>
+
+    <h3>Common expressions</h3>
+    <ul>
+      <li><code>*/5 * * * *</code> — every five minutes.</li>
+      <li><code>0 * * * *</code> — once an hour, on the hour.</li>
+      <li><code>30 2 * * *</code> — every day at 02:30.</li>
+      <li><code>0 9 * * 1-5</code> — 09:00 on weekdays only.</li>
+      <li><code>0 0 1 * *</code> — midnight on the first of each month.</li>
+      <li><code>15 3 * * 0</code> — 03:15 every Sunday.</li>
+    </ul>
+
+    <h2>Gotchas worth knowing</h2>
+
+    <h3>Day-of-month and day-of-week are OR'd, not AND'd</h3>
+    <p>This is the single most misunderstood part of cron. When <em>both</em> the day-of-month and day-of-week fields are restricted — neither is <code>*</code> — the job runs when <em>either</em> matches, not when both do.</p>
+    <p>So <code>0 0 13 * 5</code> does not mean "Friday the 13th". It means midnight on the 13th of every month, <em>and also</em> midnight every Friday. If you want a job to run only on a weekday that is also a particular date, you have to test for it inside the command itself rather than in the schedule.</p>
+
+    <h3>Cron runs with a minimal environment</h3>
+    <p>A cron job does not inherit your interactive shell's environment. <code>PATH</code> is typically just <code>/usr/bin:/bin</code>, and your profile scripts are never sourced. A command that works when you paste it into a terminal can fail under cron purely because a binary is not on that reduced path. Use absolute paths, or set <code>PATH</code> explicitly at the top of the crontab.</p>
+
+    <h3>Percent signs must be escaped</h3>
+    <p>In a crontab, an unescaped <code>%</code> is translated into a newline, and everything after the first one is fed to the command as standard input. This bites anyone using <code>date</code> format strings. Write <code>\%Y\%m\%d</code>, or move the command into a script.</p>
+
+    <h3>Daylight saving time can skip or repeat a job</h3>
+    <p>Cron schedules in the system's local timezone. When clocks jump forward, a job scheduled inside the skipped hour may not run at all that day; when they fall back, a job in the repeated hour can run twice. For anything where exactly-once matters, run the machine's cron in UTC, or make the job idempotent so a second run is harmless.</p>
+
+    <h3><code>@reboot</code> means daemon start, not boot</h3>
+    <p>It fires when the cron daemon itself starts, which usually coincides with boot but is not the same event. Restarting cron re-triggers it. It is also not a substitute for a service manager — if the job needs to run reliably and be restarted on failure, a systemd unit is the better tool.</p>
+
+    <h3>Six fields means something else</h3>
+    <p>If an expression has six fields rather than five, it is probably not Unix crontab. Spring's scheduler and several container platforms put <em>seconds</em> first; Quartz uses a sixth field for the year and supports <code>?</code>, <code>L</code> and <code>W</code> that standard cron does not. Checking the field count first saves a lot of confusion.</p>
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cronbuilder.html">Cron Builder</a></li><li><a href="timestamp.html">Unix Timestamp</a></li><li><a href="timezone.html">Timezone Converter</a></li><li><a href="cronnext.html">Cron Next Run Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-cronbuilder">
+    <div class="panel-header"><h1>Cron Builder</h1><button class="clear-btn" data-clear="cronbuilder">Clear</button></div>
+    <p class="tool-desc">Fill in each field and get a valid 5-field cron expression (the reverse of the Cron Explainer).</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="cronbuilder-minute">Minute</label>
+        <input type="text" id="cronbuilder-minute" spellcheck="false" placeholder="*" value="0">
+        <label class="second-label">Hour</label>
+        <input type="text" id="cronbuilder-hour" spellcheck="false" placeholder="*" value="9">
+        <label class="second-label">Day of month</label>
+        <input type="text" id="cronbuilder-dom" spellcheck="false" placeholder="*" value="*">
+        <label class="second-label">Month</label>
+        <input type="text" id="cronbuilder-month" spellcheck="false" placeholder="*" value="*">
+        <label class="second-label">Day of week</label>
+        <input type="text" id="cronbuilder-dow" spellcheck="false" placeholder="*" value="1-5">
+        <button id="cronbuilder-build-btn" class="primary-btn">Build</button>
+      </div>
+      <div class="io-col">
+        <label>Cron expression</label>
+        <div id="cronbuilder-result" class="result-box result-idle">Fill in the fields and click "Build".</div>
+      </div>
+    </div>
+  <h2>Choosing a schedule, not just writing one</h2>
+  <p>Getting the syntax right is the easy half. The decisions that cause trouble later are about <em>when</em> and <em>how often</em>, and they are worth making deliberately.</p>
+  <ul>
+    <li>How long does the job take, and what happens if it is still running when the next one starts?</li>
+    <li>Does it need to run at a specific local time, or just regularly?</li>
+    <li>What happens if a run is missed entirely — does the next one catch up, or is that data gone?</li>
+    <li>Is anything else scheduled at the same minute?</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Avoid the top of the hour</h3>
+  <p>Almost every schedule anyone writes lands on <code>0</code> minutes, so midnight and the hour boundary are when backups, report generation, cache warming and every third-party API's rate limit all collide. Picking an off-minute such as <code>7</code> or <code>23</code> costs nothing and sidesteps a surprising amount of contention. At larger scale, deliberate jitter across hosts matters even more.</p>
+
+  <h3>Cron does not prevent overlapping runs</h3>
+  <p>If a job scheduled every five minutes takes six, you now have two copies running, then three. Cron will happily keep starting them until the machine falls over. Use a lock — <code>flock</code> is the standard answer on Linux — so a late run skips rather than stacks.</p>
+
+  <h3>Frequent polling is usually the wrong design</h3>
+  <p>A job running every minute to check whether something happened is a queue implemented badly: it burns resources continuously and still adds up to a minute of latency. If an event can trigger the work directly, that is both cheaper and faster. Reserve short intervals for things that genuinely have no event to hang off.</p>
+
+  <h3>Decide what a missed run means before you need to</h3>
+  <p>Machines reboot, deployments restart containers, and schedulers are delayed. For an idempotent job that processes everything outstanding, a missed run is harmless. For one that processes "the last hour", a missed run is a permanent gap in the data. The second kind needs to work from a watermark rather than from the clock.</p>
+
+  <h3>The schedule runs in the machine's timezone</h3>
+  <p>A job written for 09:00 local will shift relative to UTC twice a year, and will run at different absolute times across a fleet in different regions. For anything coordinated, set the schedule in UTC and convert when a human needs to read it.</p>
+
+  <h3>Make failure visible</h3>
+  <p>By default cron emails output to the local user, which on a server means it goes nowhere anyone reads. A job that has been failing silently for months is the normal outcome, not an unusual one. Send the exit status somewhere monitored, or use a dead-man's-switch that alerts when the expected check-in does not arrive — that catches the job never running at all, which output-based alerting cannot.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cron.html">Cron Explainer</a></li><li><a href="timestamp.html">Unix Timestamp</a></li><li><a href="timezone.html">Timezone Converter</a></li><li><a href="cronnext.html">Cron Next Run Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-timestamp">
+    <div class="panel-header"><h1>Unix Timestamp Converter</h1><button class="clear-btn" data-clear="timestamp">Clear</button></div>
+    <p class="tool-desc">Convert between a Unix timestamp and a human-readable date, in both directions.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="ts-unix">Unix timestamp (seconds)</label>
+        <input type="text" id="ts-unix" spellcheck="false" placeholder="1735689600">
+        <button id="ts-to-date-btn" class="primary-btn">Convert to Date</button>
+      </div>
+      <div class="io-col">
+        <label for="ts-date">Date/time</label>
+        <input type="datetime-local" id="ts-date">
+        <button id="ts-to-unix-btn" class="primary-btn">Convert to Timestamp</button>
+      </div>
+    </div>
+    <label style="margin-top:16px;">Result</label>
+    <div id="ts-result" class="result-box result-idle">Use either field above.</div>
+  <h2>What a Unix timestamp is</h2>
+  <p>A Unix timestamp counts the seconds elapsed since 00:00:00 UTC on 1 January 1970, known as the epoch. It is a single integer with no timezone attached, which is what makes it convenient to store and compare — and what makes it easy to misread.</p>
+  <p>A ten-digit number is almost certainly seconds. A thirteen-digit number is milliseconds. Recognising which you are holding is usually just a matter of counting the digits.</p>
+
+  <h3>Useful reference points</h3>
+  <ul>
+    <li><code>0</code> — 1 January 1970, the epoch itself.</li>
+    <li><code>1000000000</code> — 9 September 2001.</li>
+    <li><code>1600000000</code> — 13 September 2020.</li>
+    <li><code>2000000000</code> — 18 May 2033.</li>
+    <li><code>2147483647</code> — 19 January 2038, the signed 32-bit limit.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Seconds versus milliseconds</h3>
+  <p>This is the most common bug in this area. JavaScript's <code>Date.now()</code> returns milliseconds; most Unix tooling, database functions and JWT claims use seconds. Mixing them does not usually throw an error — it silently produces a date in 1970 or in the year 54,000, which then propagates into comparisons and expiry checks. If a date looks absurd by a factor of a thousand, this is why.</p>
+
+  <h3>The year 2038 problem</h3>
+  <p>A signed 32-bit integer runs out at 03:14:07 UTC on 19 January 2038. Systems still storing time that way will wrap to a negative number and read as 1901. Modern 64-bit platforms are fine, but embedded devices, old database schemas and file formats with fixed-width fields are not automatically safe — and anything calculating far-future dates, such as a long-lived certificate or a retention policy, can hit the ceiling well before 2038 arrives.</p>
+
+  <h3>A timestamp has no timezone, but your display does</h3>
+  <p>The integer itself is unambiguous and always UTC. Every conversion to a human-readable string applies a timezone somewhere, and the default is usually the machine's local setting. The same timestamp shown on a developer laptop and a production server in another region produces two different strings, neither of which is wrong. Store and transmit UTC; convert only at the point of display.</p>
+
+  <h3>Leap seconds are not represented</h3>
+  <p>Unix time pretends every day is exactly 86,400 seconds, so inserted leap seconds are not counted. A timestamp is therefore not a true count of elapsed physical seconds since 1970. This almost never matters, but it does mean two timestamps subtracted give you a nominal interval rather than a precise duration — and it is why high-precision systems smear leap seconds rather than inserting them.</p>
+
+  <h3>Do not use it to measure elapsed time</h3>
+  <p>Wall-clock time can jump backwards when NTP corrects drift or a timezone database updates, which can make a measured duration negative. For timing how long something took, use a monotonic clock instead — <code>time.monotonic()</code> in Python, <code>performance.now()</code> in browsers, <code>CLOCK_MONOTONIC</code> on Linux.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cron.html">Cron Explainer</a></li><li><a href="cronbuilder.html">Cron Builder</a></li><li><a href="timezone.html">Timezone Converter</a></li><li><a href="cronnext.html">Cron Next Run Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-timezone">
+    <div class="panel-header"><h1>Timezone Converter</h1><button class="clear-btn" data-clear="timezone">Clear</button></div>
+    <p class="tool-desc">Enter a date/time and see it converted across common timezones for distributed teams.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="tz-datetime">Date/time (your local time)</label>
+        <input type="datetime-local" id="tz-datetime">
+        <button id="tz-convert-btn" class="primary-btn">Convert</button>
+      </div>
+      <div class="io-col">
+        <label>Across timezones</label>
+        <div id="tz-result" class="result-box result-idle">Pick a date/time and click "Convert".</div>
+      </div>
+    </div>
+  <h2>How timezones are identified</h2>
+  <p>There are two ways to name a zone, and only one of them is safe. IANA identifiers like <code>Asia/Kolkata</code>, <code>Europe/London</code> and <code>America/New_York</code> name a <em>region</em> whose rules are maintained over time. Abbreviations like IST, CST and BST are display labels with no authority behind them.</p>
+  <p>An offset such as <code>+05:30</code> describes a moment, not a place: it tells you the difference from UTC right then, but not what the difference will be in June. Store the IANA identifier when you need to reason about future times, and the offset only when recording what already happened.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Abbreviations are ambiguous</h3>
+  <p>IST is India Standard Time (+05:30), Irish Standard Time (+01:00) and Israel Standard Time (+02:00). CST covers US Central, China Standard and Cuba Standard — a spread of fourteen hours. Parsing a timestamp that ends in a three-letter abbreviation is guessing, and the guess is usually "whatever the library's table happens to list first".</p>
+
+  <h3>UTC offsets are not fixed properties of a place</h3>
+  <p>A zone's offset changes with daylight saving, and the rules themselves change when governments legislate. Several countries have abolished DST, changed transition dates, or shifted zone entirely within the last few years. Caching "this city is UTC+2" is caching something that has an expiry date you do not control.</p>
+
+  <h3>Some offsets are not whole hours</h3>
+  <p>India is +05:30, Nepal is +05:45, parts of Australia are +08:45, and Chatham Island is +12:45. Code that stores an offset as an integer number of hours, or a UI that only lets you pick whole hours, is broken for a large population. Minutes are not optional.</p>
+
+  <h3>Local times can be impossible or ambiguous</h3>
+  <p>When clocks spring forward, a local time inside the skipped hour never happens — 02:30 simply does not exist that day. When they fall back, an hour repeats, so 01:30 happens twice and a bare local timestamp cannot say which. Both cases are routine causes of scheduled jobs misfiring and of duplicate or missing records. Store UTC and convert on display, which makes both problems disappear.</p>
+
+  <h3>The server's timezone is not a configuration setting you should rely on</h3>
+  <p>Code that formats dates using the machine's local zone produces different output in development and production, and changes behaviour when infrastructure moves region. Set the application's timezone explicitly, keep servers on UTC, and treat any implicit local-time conversion as a bug waiting for the next deployment.</p>
+
+  <h3>Keep the tz database current</h3>
+  <p>Zone rules ship as data, not code — the IANA database is updated several times a year. A container image or runtime pinned long ago will convert future dates with stale rules and be quietly wrong after a transition date changes. Updating the tzdata package is part of routine patching, not an optional extra.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cron.html">Cron Explainer</a></li><li><a href="cronbuilder.html">Cron Builder</a></li><li><a href="timestamp.html">Unix Timestamp</a></li><li><a href="cronnext.html">Cron Next Run Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-cronnext">
+    <div class="panel-header"><h1>Cron Next Run Calculator</h1><button class="clear-btn" data-clear="cronnext">Clear</button></div>
+    <p class="tool-desc">Paste a 5-field cron expression and see the next several run times (computed in UTC).</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="cronnext-input">Cron expression</label>
+        <input type="text" id="cronnext-input" spellcheck="false" placeholder="0 9 * * 1-5" value="0 9 * * 1-5">
+        <button id="cronnext-calc-btn" class="primary-btn">Show Next Runs</button>
+      </div>
+      <div class="io-col">
+        <label>Next 5 runs (UTC)</label>
+        <div id="cronnext-result" class="result-box result-idle">Enter a cron expression and click "Show Next Runs".</div>
+      </div>
+    </div>
+  <h2>Verifying when a schedule will actually fire</h2>
+  <p>Calculating the next few run times is the fastest way to check an expression means what you think. It catches the mistakes reading the syntax does not — a schedule that is an order of magnitude more frequent than intended, or one that will not fire for another eleven months.</p>
+  <p>Two patterns are worth testing every time: the gap between consecutive runs, and the first run after a month or year boundary.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>A missing field makes it far more frequent</h3>
+  <p>The classic error is writing <code>0 2 * *</code> meaning "2am daily" and getting four fields instead of five. Depending on the parser, that is either an error or a schedule that runs every hour. The inverse is just as common: <code>* 2 * * *</code> runs sixty times between 02:00 and 02:59, not once at 2am.</p>
+
+  <h3>Day-of-month and day-of-week combine as OR</h3>
+  <p>When both are restricted, the job runs when either matches — so <code>0 0 1 * 1</code> fires on the 1st of every month <em>and</em> every Monday, which is far more often than "the first Monday". Listing the next ten runs makes this immediately obvious, which is exactly why it is worth checking rather than reasoning about.</p>
+
+  <h3>Short months and the 31st</h3>
+  <p><code>0 0 31 * *</code> simply does not run in months without a 31st, so a monthly job skips February, April, June, September and November. "Last day of the month" has no standard cron expression; the usual approach is to run on the 1st and process the previous month, or to check the date inside the job.</p>
+
+  <h3>Daylight saving shifts or duplicates a run</h3>
+  <p>A job scheduled inside the hour that is skipped when clocks move forward does not run that day. In the repeated hour when they move back, it can run twice. Some implementations compensate and others do not, so the only reliable answers are to schedule in UTC or to make the job idempotent.</p>
+
+  <h3>The next run is not the next <em>start</em> you will see</h3>
+  <p>Calculated times assume the scheduler fires precisely. In practice a busy host, a container still pulling an image, or a hosted scheduler under load can delay a run by minutes — and hosted cron services explicitly offer no exact-time guarantee. If a run being late by ten minutes breaks something, the schedule is not the right mechanism.</p>
+
+  <h3>Catch-up behaviour varies</h3>
+  <p>If the machine was off at the scheduled time, plain cron does nothing — the run is simply lost. <code>anacron</code> and systemd timers with <code>Persistent=true</code> will run the job once the system is back. Kubernetes CronJobs behave differently again, with <code>startingDeadlineSeconds</code> deciding whether a missed run is attempted. Knowing which you are using determines whether "it did not run" is a bug or the documented behaviour.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cron.html">Cron Explainer</a></li><li><a href="cronbuilder.html">Cron Builder</a></li><li><a href="timestamp.html">Unix Timestamp</a></li><li><a href="timezone.html">Timezone Converter</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-cidr">
+    <div class="panel-header"><h1>CIDR Calculator</h1><button class="clear-btn" data-clear="cidr">Clear</button></div>
+    <p class="tool-desc">Enter an IPv4 address with a CIDR prefix and get the network range, broadcast address, and usable host count.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="cidr-input">CIDR (e.g. 10.0.0.0/24)</label>
+        <input type="text" id="cidr-input" spellcheck="false" placeholder="10.0.0.0/24" value="10.0.0.0/24">
+        <button id="cidr-calc-btn" class="primary-btn">Calculate</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="cidr-result" class="result-box result-idle">Enter a CIDR block and click "Calculate".</div>
+      </div>
+    </div>
+  <h2>How CIDR notation works</h2>
+  <p>CIDR writes a network as an address followed by a prefix length, as in <code>10.0.1.0/24</code>. The prefix length is simply how many leading bits are fixed as the network portion; whatever remains identifies hosts inside it.</p>
+  <p>An IPv4 address is 32 bits, so a <code>/24</code> fixes 24 bits and leaves 8 for hosts — 256 addresses. Every bit you take away from the prefix doubles the size of the block: a <code>/23</code> is 512 addresses, a <code>/22</code> is 1,024, and so on.</p>
+
+  <h3>Common block sizes</h3>
+  <ul>
+    <li><code>/32</code> — a single address, used for host routes and firewall rules.</li>
+    <li><code>/31</code> — two addresses, for point-to-point links (see below).</li>
+    <li><code>/29</code> — 8 addresses, 6 usable.</li>
+    <li><code>/24</code> — 256 addresses, 254 usable. The classic small subnet.</li>
+    <li><code>/16</code> — 65,536 addresses. A typical VPC size.</li>
+  </ul>
+
+  <h3>Private address ranges</h3>
+  <p>Three ranges are reserved for private use and are never routed on the public internet: <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code> and <code>192.168.0.0/16</code>. Note that the middle one is <em>not</em> all of <code>172.x</code> — it covers <code>172.16</code> through <code>172.31</code> only, which is a recurring source of accidental overlap.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>Two addresses in every subnet are not usable</h3>
+  <p>The first address in a block is the network identifier and the last is the broadcast address, so a <code>/24</code> gives 254 assignable hosts rather than 256. Sizing a subnet for exactly as many hosts as you have is how you end up one address short on the day you need it.</p>
+
+  <h3>Cloud providers reserve more than two</h3>
+  <p>In an AWS VPC subnet, five addresses are unavailable, not two: the network address, the broadcast address, plus the first three usable addresses, which AWS takes for the implied router, DNS, and future use. A <code>/28</code> therefore yields 11 usable addresses rather than 14. Azure and Google Cloud reserve similarly. This catches people out when carving the smallest possible subnets.</p>
+
+  <h3><code>/31</code> is a legitimate special case</h3>
+  <p>By the normal rule a <code>/31</code> would have two addresses and zero usable ones. RFC 3021 makes an exception for point-to-point links, where both addresses are assignable because there is no need for a broadcast address with only two endpoints. Most modern routers support it; it halves address consumption on transit links.</p>
+
+  <h3>The address you wrote may not be the network address</h3>
+  <p>Writing <code>10.0.1.37/24</code> is describing a host inside <code>10.0.1.0/24</code>, not a network starting at <code>.37</code>. Some tools silently normalise it to the network address and others reject it outright, so the same string can behave differently across a router, a firewall rule and a cloud API. Write the network address explicitly when defining a block.</p>
+
+  <h3>Overlap is not always obvious</h3>
+  <p>Two ranges that look unrelated can still overlap, because containment depends on prefix length rather than on the dotted digits. <code>10.0.0.0/16</code> fully contains <code>10.0.5.0/24</code>, and peering two networks that overlap anywhere will fail. Plan address space before you allocate it, and leave gaps — renumbering a live network is considerably harder than oversizing it on day one.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cidroverlap.html">CIDR Overlap Checker</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-cidroverlap">
+    <div class="panel-header"><h1>CIDR Overlap Checker</h1><button class="clear-btn" data-clear="cidroverlap">Clear</button></div>
+    <p class="tool-desc">Paste two CIDR blocks (one per line, or more) and check whether any of them overlap — useful for VPC/subnet planning.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="cidroverlap-input">CIDR blocks (one per line)</label>
+        <textarea id="cidroverlap-input" spellcheck="false" placeholder="10.0.0.0/24
+10.0.0.128/25
+10.0.1.0/24">10.0.0.0/24
+10.0.0.128/25
+10.0.1.0/24</textarea>
+        <button id="cidroverlap-check-btn" class="primary-btn">Check Overlaps</button>
+      </div>
+      <div class="io-col">
+        <label>Result</label>
+        <div id="cidroverlap-result" class="result-box result-idle">Paste CIDR blocks and click "Check Overlaps".</div>
+      </div>
+    </div>
+  <h2>What counts as an overlap</h2>
+  <p>Two CIDR blocks overlap when any address belongs to both. In practice that takes one of two forms:</p>
+  <ul>
+    <li><strong>Containment</strong> — one range sits entirely inside the other, as <code>10.0.5.0/24</code> does inside <code>10.0.0.0/16</code>.</li>
+    <li><strong>Identical</strong> — the same range allocated twice in different places.</li>
+  </ul>
+  <p>Properly aligned CIDR blocks cannot partially overlap: because every block starts on a boundary that is a power of two, two ranges are either disjoint or one contains the other. A partial overlap means one of the inputs is not a valid network address.</p>
+
+  <h2>Why overlaps matter</h2>
+
+  <h3>Peering and VPN are refused outright</h3>
+  <p>Overlapping ranges cannot be peered — the request fails rather than degrading, because the routing would be ambiguous. The same applies to site-to-site VPN and Direct Connect back to a corporate network. This is usually discovered at exactly the wrong moment: when two environments that were built independently need to talk.</p>
+
+  <h3>Routing becomes ambiguous</h3>
+  <p>Where overlapping routes do coexist, the most specific prefix wins — a <code>/24</code> route beats a <code>/16</code> covering the same addresses. That makes behaviour depend on which routes happen to be installed, which is a very difficult class of bug: traffic to one host works and another does not, with nothing obviously wrong at either end.</p>
+
+  <h3>Security group references stop being meaningful</h3>
+  <p>Rules written against CIDR ranges rather than security group IDs silently widen when ranges overlap, because a rule intended for one environment also matches addresses in another.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>The default ranges collide constantly</h3>
+  <p>Almost every tutorial and default template uses <code>10.0.0.0/16</code> or <code>172.17.0.0/16</code>, so independently built environments collide the first time anyone tries to connect them. Docker's default bridge is <code>172.17.0.0/16</code>, which also conflicts with the lower end of the private <code>172.16.0.0/12</code> range used by some corporate networks — a classic cause of a container losing access to an internal service.</p>
+
+  <h3>Check against everything, not just cloud</h3>
+  <p>The comparison set has to include on-premises networks, VPN client pools, partner networks you might peer with, and Kubernetes pod and service CIDRs — which are separate ranges that must not collide with the VPC or with each other.</p>
+
+  <h3>Renumbering later is the expensive option</h3>
+  <p>Changing a subnet's range means recreating it and everything in it. Keeping a simple allocation registry, even a spreadsheet, costs a few minutes per environment and avoids that entirely.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cidr.html">CIDR Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-subnetplanner">
+    <div class="panel-header"><h1>VPC Subnet Planner</h1><button class="clear-btn" data-clear="subnetplanner">Clear</button></div>
+    <p class="tool-desc">Split a VPC CIDR into evenly sized per-AZ subnets. Shows each range and the <em>real</em> usable host count — AWS and Azure both take five addresses out of every subnet, which is the part that catches people out.</p>
+    <div class="tool-grid">
+      <div class="io-col">
+        <label for="subnetplanner-cidr">Base CIDR</label>
+        <input type="text" id="subnetplanner-cidr" spellcheck="false" placeholder="10.0.0.0/16" value="10.0.0.0/16">
+        <label for="subnetplanner-prefix">Split into /</label>
+        <input type="text" id="subnetplanner-prefix" spellcheck="false" placeholder="24" value="20">
+        <label for="subnetplanner-cloud">Reserved-address model</label>
+        <select id="subnetplanner-cloud">
+          <option value="aws">AWS (5 reserved)</option>
+          <option value="azure">Azure (5 reserved)</option>
+          <option value="plain">Plain IPv4 (2 reserved)</option>
+        </select>
+        <button id="subnetplanner-plan-btn" class="primary-btn">Plan subnets</button>
+      </div>
+      <div class="io-col">
+        <label>Subnets</label>
+        <div id="subnetplanner-result" class="result-box result-idle tf-output">Enter a CIDR and click "Plan subnets".</div>
+      </div>
+    </div>
+  <h2>Planning VPC address space</h2>
+  <p>Subnet layout is one of the few cloud decisions that is genuinely hard to change later, so it is worth spending time on before the first resource is created.</p>
+  <p>The usual shape is a VPC CIDR divided per availability zone, and within each zone a public subnet for load balancers and NAT, and a private subnet for compute and databases. Three availability zones is the common baseline, which means at least six subnets.</p>
+
+  <h3>A workable default</h3>
+  <p>A <code>/16</code> VPC split into <code>/20</code> subnets gives sixteen blocks of roughly 4,000 addresses — enough for three zones of public and private subnets with plenty spare for later tiers. Generous sizing costs nothing: unused private address space is free.</p>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3>AWS reserves five addresses per subnet</h3>
+  <p>Not two. The network address, the broadcast address, and the first three usable addresses are taken by the VPC router, DNS, and a reserved slot. A <code>/28</code> therefore yields 11 usable addresses rather than 14, which is exactly the size where it hurts.</p>
+
+  <h3>A VPC CIDR cannot be shrunk</h3>
+  <p>You can add secondary CIDR blocks to an AWS VPC, but you cannot resize or remove the primary one, and a subnet's range is fixed for its lifetime. Undersizing means migrating workloads into new subnets later — which touches security groups, route tables and anything with a hardcoded address.</p>
+
+  <h3>Overlapping ranges block peering forever</h3>
+  <p>Two VPCs with overlapping CIDRs cannot be peered, and the same applies to a VPN or Direct Connect back to on-premises. Using <code>10.0.0.0/16</code> because it is the default is how two environments end up unable to talk to each other. Allocate from a registry of ranges across the whole organisation, including the corporate network, before creating anything.</p>
+
+  <h3>Kubernetes needs far more addresses than you expect</h3>
+  <p>With the AWS VPC CNI, every pod takes a real subnet IP, and each node pre-allocates a block of them. A cluster of modest size can exhaust a <code>/24</code> quickly, and IP exhaustion presents as pods stuck in ContainerCreating rather than as a networking error. Size node subnets for pods, not for nodes.</p>
+
+  <h3>One NAT gateway per zone, or none</h3>
+  <p>Routing all private subnets through a single NAT gateway saves money and creates both a single point of failure and cross-zone data charges. One per availability zone is the resilient pattern; be deliberate about which you are choosing rather than inheriting it from a template.</p>
+
+  <h3>Leave gaps between allocations</h3>
+  <p>Allocating contiguously means the next subnet has nowhere to grow. Leaving a block spare after each tier costs nothing in a private range and makes later expansion a change rather than a migration.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="cidr.html">CIDR Calculator</a></li><li><a href="cidroverlap.html">CIDR Overlap Checker</a></li><li><a href="k8sgen.html">K8s Manifest Generator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-findbuilder">
+    <div class="panel-header"><h1>find Command Builder</h1><button class="clear-btn" data-clear="findbuilder">Clear</button></div>
+    <p class="tool-desc">Fill in the filters you need and get a correctly-formed <code>find</code> command — flag order and quoting are easy to get wrong from memory.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="findbuilder-path">Path to search</label>
+        <input type="text" id="findbuilder-path" spellcheck="false" placeholder="." value=".">
+        <label class="second-label" for="findbuilder-name">Name pattern (optional, glob)</label>
+        <input type="text" id="findbuilder-name" spellcheck="false" placeholder="*.log">
+        <label class="second-label"><input type="checkbox" id="findbuilder-iname"> Case-insensitive name match</label>
+        <label class="second-label" for="findbuilder-type">Type</label>
+        <select id="findbuilder-type">
+          <option value="">Any</option>
+          <option value="f">File</option>
+          <option value="d">Directory</option>
+          <option value="l">Symlink</option>
+        </select>
+        <label class="second-label" for="findbuilder-mtime">Modified time (days)</label>
+        <div class="btn-row">
+          <select id="findbuilder-mtime-op" style="max-width:110px;">
+            <option value="">(none)</option>
+            <option value="+">Older than</option>
+            <option value="-">Newer than</option>
+          </select>
+          <input type="text" id="findbuilder-mtime" spellcheck="false" placeholder="7">
+        </div>
+        <label class="second-label" for="findbuilder-size">Size</label>
+        <div class="btn-row">
+          <select id="findbuilder-size-op" style="max-width:110px;">
+            <option value="">(none)</option>
+            <option value="+">Larger than</option>
+            <option value="-">Smaller than</option>
+          </select>
+          <input type="text" id="findbuilder-size" spellcheck="false" placeholder="100">
+          <select id="findbuilder-size-unit" style="max-width:90px;">
+            <option value="c">bytes</option>
+            <option value="k" selected>KB</option>
+            <option value="M">MB</option>
+            <option value="G">GB</option>
+          </select>
+        </div>
+        <label class="second-label" for="findbuilder-perm">Permissions (octal, optional)</label>
+        <input type="text" id="findbuilder-perm" spellcheck="false" placeholder="644">
+        <label class="second-label" for="findbuilder-action">Action</label>
+        <select id="findbuilder-action">
+          <option value="print">Just list matches (default)</option>
+          <option value="delete">Delete matches</option>
+          <option value="exec">Run a command on each match</option>
+        </select>
+        <input type="text" id="findbuilder-execcmd" spellcheck="false" placeholder="chmod +x" style="display:none;margin-top:8px;">
+        <button id="findbuilder-build-btn" class="primary-btn">Build Command</button>
+      </div>
+      <div class="io-col">
+        <label>Command</label>
+        <pre id="findbuilder-result" class="result-box result-idle tf-output">Fill in the filters above and click "Build Command".</pre>
+      </div>
+    </div>
+  <h2>How find is structured</h2>
+  <p>A find command reads as <code>find [where] [tests] [action]</code> — the starting path, then conditions, then what to do with matches. Everything after the path is evaluated left to right, which matters more than it first appears.</p>
+  <ul>
+    <li><code>-name '*.log'</code> — match the filename; <code>-iname</code> ignores case. Quote the pattern so the shell does not expand it first.</li>
+    <li><code>-type f</code> / <code>-type d</code> / <code>-type l</code> — regular files, directories, symlinks.</li>
+    <li><code>-mtime +7</code> — modified more than seven days ago; <code>-mmin -30</code> is the same idea in minutes.</li>
+    <li><code>-size +100M</code> — larger than 100 megabytes.</li>
+    <li><code>-maxdepth 1</code> — do not descend. Place it before other tests.</li>
+    <li><code>-exec cmd {} +</code> — run a command on the matches.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3><code>-exec ... +</code> beats <code>-exec ... \;</code></h3>
+  <p>The semicolon form runs the command once per file, which on a large tree means thousands of process spawns. The <code>+</code> form batches as many paths as fit onto one command line, exactly as <code>xargs</code> would, and is usually an order of magnitude faster. Use <code>\;</code> only when the command genuinely takes one argument at a time.</p>
+
+  <h3>Unquoted patterns are expanded by the shell</h3>
+  <p><code>find . -name *.log</code> lets the shell expand <code>*.log</code> against the current directory before find ever sees it, so the command either searches for one specific filename or fails with "paths must precede expression". Always write <code>-name '*.log'</code>.</p>
+
+  <h3><code>-delete</code> is not a safe thing to append</h3>
+  <p>It deletes immediately, with no confirmation and no undo, and it is easy to get wrong in ways that are catastrophic rather than merely annoying. Run the command with <code>-print</code> first and read the list, then swap in <code>-delete</code>. Note too that <code>-delete</code> implies <code>-depth</code>, which can change how it interacts with <code>-prune</code>.</p>
+
+  <h3>Filenames can contain spaces and newlines</h3>
+  <p>Piping <code>find</code> into <code>xargs</code> breaks on any path containing whitespace, which is how a cleanup script ends up deleting the wrong thing. Use <code>-print0</code> with <code>xargs -0</code>, or avoid the pipe entirely with <code>-exec ... +</code>.</p>
+
+  <h3><code>-mtime</code> counts whole 24-hour periods</h3>
+  <p><code>-mtime +1</code> does not mean "since yesterday" — it means at least two full days old, because the fractional part is discarded. For anything where the boundary matters, use <code>-mmin</code> or compare against a reference file with <code>-newermt '2026-01-01'</code>.</p>
+
+  <h3>Order of tests changes the result and the cost</h3>
+  <p>Conditions short-circuit, so putting the cheap, selective test first avoids running an expensive one on every file. It also changes semantics with <code>-prune</code>: pruning has to come before the thing it is meant to exclude, or you will have already descended into the directory you were trying to skip.</p>
+
+  <h3>GNU and BSD find differ</h3>
+  <p>macOS ships BSD find, which wants <code>-type f</code> before some options that GNU accepts anywhere, handles <code>-regex</code> differently, and lacks a few GNU extensions. A script written on Linux is worth testing on macOS before you rely on it in a shared repository.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="sedbuilder.html">sed Command Builder</a></li><li><a href="chmod.html">chmod Calculator</a></li></ul></div></section>
+
+<section class="tool-panel" id="panel-sedbuilder">
+    <div class="panel-header"><h1>sed Command Builder</h1><button class="clear-btn" data-clear="sedbuilder">Clear</button></div>
+    <p class="tool-desc">Build a <code>sed</code> command for substituting, deleting, or printing lines — the delimiter/flag/escaping rules are easy to fumble typing from scratch.</p>
+    <div class="tool-grid tool-grid-single">
+      <div class="io-col">
+        <label for="sedbuilder-mode">Operation</label>
+        <select id="sedbuilder-mode">
+          <option value="substitute">Substitute (find and replace)</option>
+          <option value="delete">Delete matching lines</option>
+          <option value="print">Print only matching lines</option>
+        </select>
+        <div id="sedbuilder-sub-fields">
+          <label class="second-label" for="sedbuilder-pattern">Pattern to match</label>
+          <input type="text" id="sedbuilder-pattern" spellcheck="false" placeholder="foo">
+          <label class="second-label" for="sedbuilder-replacement">Replacement</label>
+          <input type="text" id="sedbuilder-replacement" spellcheck="false" placeholder="bar">
+          <label class="second-label"><input type="checkbox" id="sedbuilder-global" checked> Replace all occurrences per line (g)</label>
+          <label class="second-label"><input type="checkbox" id="sedbuilder-icase"> Case-insensitive (i)</label>
+        </div>
+        <div id="sedbuilder-range-fields" style="display:none;">
+          <label class="second-label" for="sedbuilder-dpattern">Pattern (or leave blank and use a line range below)</label>
+          <input type="text" id="sedbuilder-dpattern" spellcheck="false" placeholder="^#">
+          <label class="second-label" for="sedbuilder-range">Line range (optional, e.g. 2,5 — overrides pattern)</label>
+          <input type="text" id="sedbuilder-range" spellcheck="false" placeholder="2,5">
+        </div>
+        <label class="second-label"><input type="checkbox" id="sedbuilder-inplace"> Edit file in place (-i)</label>
+        <input type="text" id="sedbuilder-backup" spellcheck="false" placeholder="Backup suffix, e.g. .bak (optional)" style="display:none;margin-top:8px;">
+        <label class="second-label" for="sedbuilder-file">File (optional — omit to read from stdin)</label>
+        <input type="text" id="sedbuilder-file" spellcheck="false" placeholder="config.txt">
+        <button id="sedbuilder-build-btn" class="primary-btn">Build Command</button>
+      </div>
+      <div class="io-col">
+        <label>Command</label>
+        <pre id="sedbuilder-result" class="result-box result-idle tf-output">Fill in the fields above and click "Build Command".</pre>
+      </div>
+    </div>
+  <h2>sed basics</h2>
+  <p>The overwhelming majority of sed usage is one command: substitute. <code>sed 's/old/new/'</code> replaces the first match on each line; adding <code>g</code> replaces every match on the line.</p>
+  <ul>
+    <li><code>s/a/b/g</code> — replace all occurrences on each line.</li>
+    <li><code>s/a/b/2</code> — replace only the second occurrence on each line.</li>
+    <li><code>3s/a/b/</code> — apply only to line 3; <code>3,7s/...</code> applies to a range.</li>
+    <li><code>/pattern/s/a/b/</code> — apply only to lines matching a pattern.</li>
+    <li><code>-n</code> with <code>p</code> — suppress automatic output and print only what you select.</li>
+    <li><code>d</code> — delete matching lines, as in <code>sed '/^#/d'</code>.</li>
+    <li><code>-E</code> — extended regex, so <code>+</code>, <code>?</code> and <code>()</code> need no backslashes.</li>
+  </ul>
+
+  <h2>Gotchas worth knowing</h2>
+
+  <h3><code>-i</code> is not portable</h3>
+  <p>This is the one that breaks CI. GNU sed accepts <code>sed -i 's/a/b/' file</code>; BSD sed on macOS requires an argument for the backup suffix, so the same command consumes the next token as the suffix and fails confusingly. <code>sed -i '' 's/a/b/' file</code> works on macOS and breaks on Linux. For a script that must run on both, write to a temporary file and move it, or use <code>perl -pi -e</code>, which behaves consistently.</p>
+
+  <h3>The delimiter does not have to be a slash</h3>
+  <p>Substituting a path turns into backslash soup: <code>s/\/usr\/local\/bin/\/opt\/bin/</code>. Any character works as the delimiter, so <code>s|/usr/local/bin|/opt/bin|</code> says the same thing legibly. Pick a character that does not appear in either side.</p>
+
+  <h3><code>&amp;</code> in the replacement means "the whole match"</h3>
+  <p>Useful when wrapping something — <code>s/error/[&amp;]/</code> produces <code>[error]</code> — and surprising when you only wanted a literal ampersand. Escape it as <code>\&amp;</code> when you mean the character.</p>
+
+  <h3>sed is line-oriented</h3>
+  <p>It processes one line at a time, so a pattern spanning two lines simply never matches. Multi-line edits are possible with the hold space and <code>N</code>, but the resulting command is write-only. If the task needs cross-line context, reach for <code>awk</code>, <code>perl -0777</code>, or a real parser instead.</p>
+
+  <h3>Basic regex needs backslashes</h3>
+  <p>Without <code>-E</code>, sed uses POSIX basic regular expressions, where <code>+</code>, <code>?</code>, <code>|</code>, <code>(</code> and <code>{</code> are literal characters and need escaping to act as operators. A pattern copied from a regex tester will usually need <code>-E</code> to behave as written.</p>
+
+  <h3>Editing config files in place is a liability</h3>
+  <p>A sed command that rewrites configuration is fine once and dangerous repeatedly: run twice it may double-apply, and on a file whose format drifted it can produce something subtly invalid that only fails at restart. Where the file is managed, change the source of truth and regenerate rather than patching the output.</p>
+
+  <div class="related-tools"><h2>Related tools</h2><ul><li><a href="findbuilder.html">find Command Builder</a></li><li><a href="regex.html">Regex Tester</a></li></ul></div></section>
+</main>
+</div>
+
+<script src="%%ROOT%%/vendor/js-yaml.min.js"></script>
+<script src="%%ROOT%%/vendor/marked.umd.min.js"></script>
+<script src="%%ROOT%%/vendor/html-docx.js"></script>
+<script src="%%ROOT%%/vendor/mermaid.min.js"></script>
+<script src="%%ROOT%%/shim.js"></script>
+<script src="%%ROOT%%/app.js"></script>
+</body>
+</html>

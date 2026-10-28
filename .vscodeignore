@@ -1,0 +1,8 @@
+# Sources and tooling - the published package only needs media/ and src/.
+build/**
+node_modules/**
+media/harness.html
+.gitignore
+.vscodeignore
+package-lock.json
+PUBLISHING.md

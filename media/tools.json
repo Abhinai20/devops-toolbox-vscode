@@ -1,0 +1,218 @@
+[
+  {
+    "id": "yaml",
+    "label": "YAML Validator",
+    "category": "Format & Validate",
+    "keywords": "yaml validate lint"
+  },
+  {
+    "id": "jsonyaml",
+    "label": "JSON ↔ YAML",
+    "category": "Format & Validate",
+    "keywords": "convert yaml json"
+  },
+  {
+    "id": "md2word",
+    "label": "Markdown → Word",
+    "category": "Format & Validate",
+    "keywords": "markdown docx document"
+  },
+  {
+    "id": "xmljson",
+    "label": "XML ↔ JSON",
+    "category": "Format & Validate",
+    "keywords": "convert xml json"
+  },
+  {
+    "id": "jsonschema",
+    "label": "JSON Schema Generator",
+    "category": "Format & Validate",
+    "keywords": "json schema"
+  },
+  {
+    "id": "structdiff",
+    "label": "Config Diff (JSON/YAML)",
+    "category": "Format & Validate",
+    "keywords": "diff compare yaml json config"
+  },
+  {
+    "id": "k8slint",
+    "label": "K8s Manifest Analyzer",
+    "category": "Kubernetes & Docker",
+    "keywords": "kubernetes k8s manifest lint"
+  },
+  {
+    "id": "dockerlint",
+    "label": "Dockerfile Checker",
+    "category": "Kubernetes & Docker",
+    "keywords": "docker container image"
+  },
+  {
+    "id": "k8squantity",
+    "label": "K8s Quantity Converter",
+    "category": "Kubernetes & Docker",
+    "keywords": "kubernetes k8s memory cpu"
+  },
+  {
+    "id": "resourcequota",
+    "label": "K8s Resource Quota Calculator",
+    "category": "Kubernetes & Docker",
+    "keywords": "kubernetes k8s quota limits"
+  },
+  {
+    "id": "jsonpath",
+    "label": "kubectl JSONPath Tester",
+    "category": "Kubernetes & Docker",
+    "keywords": "kubernetes k8s kubectl query"
+  },
+  {
+    "id": "k8sgen",
+    "label": "K8s Manifest Generator",
+    "category": "Kubernetes & Docker",
+    "keywords": "kubernetes k8s deployment service ingress yaml generator"
+  },
+  {
+    "id": "slo",
+    "label": "SLO / Error Budget Calculator",
+    "category": "Reliability",
+    "keywords": "sre error budget uptime downtime availability"
+  },
+  {
+    "id": "tf",
+    "label": "TF Plan Formatter",
+    "category": "Terraform & AWS",
+    "keywords": "terraform hcl plan"
+  },
+  {
+    "id": "iampolicy",
+    "label": "IAM Policy Analyzer",
+    "category": "Terraform & AWS",
+    "keywords": "aws iam security policy permissions"
+  },
+  {
+    "id": "semver",
+    "label": "Version Constraint Checker",
+    "category": "Terraform & AWS",
+    "keywords": "terraform npm version range constraint"
+  },
+  {
+    "id": "jwt",
+    "label": "JWT Decoder",
+    "category": "Security",
+    "keywords": "token auth decode security"
+  },
+  {
+    "id": "chmod",
+    "label": "chmod Calculator",
+    "category": "Security",
+    "keywords": "linux unix permissions octal"
+  },
+  {
+    "id": "secretscanner",
+    "label": "Secret Scanner",
+    "category": "Security",
+    "keywords": "security credentials leak scan"
+  },
+  {
+    "id": "tlsdecoder",
+    "label": "TLS Certificate Decoder",
+    "category": "Security",
+    "keywords": "ssl certificate security x509"
+  },
+  {
+    "id": "regex",
+    "label": "Regex Tester",
+    "category": "Text & Code",
+    "keywords": "regular expression pattern"
+  },
+  {
+    "id": "curl",
+    "label": "cURL → Code",
+    "category": "Text & Code",
+    "keywords": "http request api client"
+  },
+  {
+    "id": "mermaid",
+    "label": "Mermaid Diagram Preview",
+    "category": "Text & Code",
+    "keywords": "diagram chart"
+  },
+  {
+    "id": "restmock",
+    "label": "REST Endpoint Mock Generator",
+    "category": "Text & Code",
+    "keywords": "api mock http endpoint"
+  },
+  {
+    "id": "envparser",
+    "label": ".env File Validator",
+    "category": "Text & Code",
+    "keywords": "dotenv environment variables"
+  },
+  {
+    "id": "nginxfmt",
+    "label": "Nginx Config Formatter",
+    "category": "Text & Code",
+    "keywords": "nginx webserver config"
+  },
+  {
+    "id": "cron",
+    "label": "Cron Explainer",
+    "category": "Time",
+    "keywords": "crontab schedule"
+  },
+  {
+    "id": "cronbuilder",
+    "label": "Cron Builder",
+    "category": "Time",
+    "keywords": "crontab schedule"
+  },
+  {
+    "id": "timestamp",
+    "label": "Unix Timestamp",
+    "category": "Time",
+    "keywords": "unix epoch date time"
+  },
+  {
+    "id": "timezone",
+    "label": "Timezone Converter",
+    "category": "Time",
+    "keywords": "utc time date convert"
+  },
+  {
+    "id": "cronnext",
+    "label": "Cron Next Run Calculator",
+    "category": "Time",
+    "keywords": "crontab schedule next run"
+  },
+  {
+    "id": "cidr",
+    "label": "CIDR Calculator",
+    "category": "Networking",
+    "keywords": "network ip subnet mask"
+  },
+  {
+    "id": "cidroverlap",
+    "label": "CIDR Overlap Checker",
+    "category": "Networking",
+    "keywords": "network ip subnet overlap"
+  },
+  {
+    "id": "subnetplanner",
+    "label": "VPC Subnet Planner",
+    "category": "Networking",
+    "keywords": "aws vpc network subnet cidr ip"
+  },
+  {
+    "id": "findbuilder",
+    "label": "find Command Builder",
+    "category": "Shell & Files",
+    "keywords": "linux unix shell find"
+  },
+  {
+    "id": "sedbuilder",
+    "label": "sed Command Builder",
+    "category": "Shell & Files",
+    "keywords": "linux unix shell sed"
+  }
+]
